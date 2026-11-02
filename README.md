@@ -25,5 +25,3 @@ Commit and push automatically once edits settle, instead of remembering to do it
 Watches `src/`, `public/` and the root config files. Empty diffs produce no
 commit. A blocked commit (lint-staged) or a failed push is written to
 `reports/autosave.log` and retried on the next change.
-
-<!-- autosave probe -->
