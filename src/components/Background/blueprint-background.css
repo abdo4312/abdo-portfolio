@@ -1,0 +1,59 @@
+.blueprint-grid {
+  background-image:
+    linear-gradient(to right, #1E2A3A33 1px, transparent 1px),
+    linear-gradient(to bottom, #1E2A3A33 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.wire-h {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #1E2A3A 15%, #1E2A3A 85%, transparent);
+}
+
+.wire-v {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, #1E2A3A 15%, #1E2A3A 85%, transparent);
+}
+
+.pulse-head {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background: #4FA8E0;
+  box-shadow: 0 0 10px 3px #4FA8E066;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.pulse-head--h {
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation-name: travel-h;
+}
+
+.pulse-head--v {
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-name: travel-v;
+}
+
+@keyframes travel-h {
+  0%   { left: 0%;   opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+@keyframes travel-v {
+  0%   { top: 0%;   opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}

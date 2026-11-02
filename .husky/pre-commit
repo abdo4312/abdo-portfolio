@@ -1,0 +1,2 @@
+export REVIEW_URL=http://localhost:5678/webhook/code-review
+npx lint-staged

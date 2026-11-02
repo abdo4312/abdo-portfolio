@@ -1,0 +1,455 @@
+.cs-spine-zone {
+  position: relative;
+}
+
+.gallery-spine-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5.5rem;
+}
+
+.gallery-spine-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.gallery-spine-path {
+  fill: none;
+  stroke: var(--color-blue-sky);
+  stroke-width: 2;
+  stroke-linecap: square;
+  transition: stroke 0.35s ease;
+}
+
+.gallery-spine-path.is-red {
+  stroke: var(--color-accent-red);
+}
+
+.gallery-spine-path.is-bursting {
+  animation: gallery-spine-line-burst 0.42s steps(2, end) 1;
+}
+
+.gallery-spine-end-path.is-bursting {
+  animation: gallery-spine-end-glitch 0.7s steps(3, end) 1;
+}
+
+/* Junction & Split Nodes */
+.cs-spine-node-core {
+  fill: var(--color-bg-primary);
+  stroke: var(--color-blue-sky);
+  stroke-width: 1.5;
+}
+
+.cs-spine-node.is-junction .cs-spine-node-core {
+  stroke-width: 2;
+}
+
+.cs-spine-shard {
+  stroke-width: 1.5;
+  opacity: 0;
+}
+
+.cs-spine-shard.is-cyan {
+  stroke: var(--color-blue-sky);
+}
+
+.cs-spine-shard.is-red {
+  stroke: var(--color-accent-red);
+}
+
+.cs-spine-node.is-bursting .cs-spine-node-core {
+  stroke: var(--color-accent-red);
+}
+
+.cs-spine-node.is-bursting .cs-spine-shard.is-cyan {
+  animation: cs-shard-flash-cyan 0.45s steps(2, end) 1;
+}
+
+.cs-spine-node.is-bursting .cs-spine-shard.is-red {
+  animation: cs-shard-flash-red 0.45s steps(2, end) 1;
+}
+
+/* Living Leading Tip (Rides the active drawing head) */
+.cs-spine-tip-core {
+  fill: var(--color-blue-sky);
+  stroke: var(--color-bg-primary);
+  stroke-width: 1.5;
+}
+
+.cs-spine-tip.is-red .cs-spine-tip-core {
+  fill: var(--color-accent-red);
+}
+
+.cs-spine-tip-shard {
+  stroke-width: 1.5;
+  opacity: 0;
+}
+
+.cs-spine-tip-shard.is-cyan {
+  stroke: var(--color-blue-sky);
+}
+
+.cs-spine-tip-shard.is-red {
+  stroke: var(--color-accent-red);
+}
+
+.cs-spine-tip.is-moving .cs-spine-tip-shard.is-cyan {
+  animation: cs-shard-flash-cyan 0.28s steps(2, end) infinite;
+}
+
+.cs-spine-tip.is-moving .cs-spine-tip-shard.is-red {
+  animation: cs-shard-flash-red 0.28s steps(2, end) infinite;
+}
+
+/* Station Header Plate sitting on the split point */
+.gallery-spine .gallery-station-header {
+  position: relative;
+  z-index: 1;
+  width: auto;
+  max-width: none;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 12px;
+  padding: 8px 16px;
+  border: 1px solid var(--color-grid-line);
+  background: var(--color-bg-primary);
+  margin-bottom: 38px;
+}
+
+.gallery-spine .gallery-station-frames {
+  position: relative;
+  z-index: 1;
+}
+
+/* In-Image Red & Blue Chromatic Static Glitch Stage */
+.gallery-frame-glitch-stage {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.gallery-frame-img-base {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery-frame-img-glitch {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  mix-blend-mode: screen;
+}
+
+.gallery-frame-img-glitch.is-red-channel {
+  filter: url(#cs-channel-red);
+}
+
+.gallery-frame-img-glitch.is-cyan-channel {
+  filter: url(#cs-channel-cyan);
+}
+
+.gallery-frame-static {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  mix-blend-mode: screen;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 0, 51, 0.38) 0px,
+      rgba(255, 0, 51, 0.38) 1px,
+      transparent 1px,
+      transparent 4px,
+      rgba(0, 240, 255, 0.38) 4px,
+      rgba(0, 240, 255, 0.38) 5px,
+      transparent 5px,
+      transparent 9px
+    ),
+    linear-gradient(
+      180deg,
+      transparent 18%,
+      rgba(255, 0, 51, 0.45) 19%,
+      rgba(0, 240, 255, 0.45) 21%,
+      transparent 22%,
+      transparent 66%,
+      rgba(0, 240, 255, 0.5) 67%,
+      rgba(255, 0, 51, 0.5) 69%,
+      transparent 70%
+    );
+}
+
+.gallery-spine .gallery-station-frames.is-glitching .gallery-frame-img-base {
+  animation: cs-img-base-jitter 0.65s steps(2, end) 1;
+}
+
+.gallery-spine .gallery-station-frames.is-glitching .gallery-frame-img-glitch.is-red-channel {
+  visibility: visible;
+  will-change: transform, clip-path, opacity;
+  animation: cs-img-static-red 0.65s steps(2, end) 1;
+}
+
+.gallery-spine .gallery-station-frames.is-glitching .gallery-frame-img-glitch.is-cyan-channel {
+  visibility: visible;
+  will-change: transform, clip-path, opacity;
+  animation: cs-img-static-cyan 0.65s steps(2, end) 1;
+}
+
+.gallery-spine .gallery-station-frames.is-glitching .gallery-frame-static {
+  visibility: visible;
+  will-change: transform, opacity;
+  animation: cs-img-static-bars 0.65s steps(3, end) 1;
+}
+
+/* Breathing room above the insight bubble so the line merges after frames and splits again around insight */
+.gallery-station-insight-wrap {
+  position: relative;
+  z-index: 1;
+  margin-top: 72px;
+}
+
+.gallery-spine .gallery-insight {
+  position: relative;
+  z-index: 1;
+  background: var(--color-bg-secondary);
+}
+
+.gallery-spine-end {
+  position: relative;
+  height: 20px;
+  margin-top: 3.5rem;
+}
+
+.gallery-spine-end::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  transform: translateX(-50%);
+  border: 1px solid var(--color-blue-sky);
+  background: var(--color-bg-primary);
+}
+
+.gallery-spine-end.is-bursting::after {
+  animation: gallery-spine-end-cap 0.7s steps(3, end) 1;
+}
+
+@keyframes cs-shard-flash-cyan {
+  0% {
+    opacity: 1;
+    transform: translate(-4px, -1px);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translate(4px, 1px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes cs-shard-flash-red {
+  0% {
+    opacity: 1;
+    transform: translate(4px, 1px);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translate(-4px, -1px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes gallery-spine-line-burst {
+  0% {
+    opacity: 1;
+    stroke: var(--color-blue-sky);
+    transform: translateX(2.5px);
+  }
+  50% {
+    opacity: 0.45;
+    stroke: var(--color-accent-red);
+    transform: translateX(-2.5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes gallery-spine-end-glitch {
+  0% {
+    stroke: var(--color-blue-sky);
+    transform: translateX(2px);
+  }
+  25% {
+    stroke: var(--color-accent-red);
+    transform: translateX(-2px);
+  }
+  50% {
+    stroke: var(--color-blue-sky);
+    transform: translateX(2px);
+    opacity: 0.4;
+  }
+  75% {
+    stroke: var(--color-accent-red);
+    transform: translateX(-1px);
+  }
+  100% {
+    stroke: var(--color-blue-sky);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes gallery-spine-end-cap {
+  0% {
+    border-color: var(--color-blue-sky);
+    transform: translateX(-50%) translateX(2px);
+  }
+  25% {
+    border-color: var(--color-accent-red);
+    transform: translateX(-50%) translateX(-2px);
+  }
+  50% {
+    border-color: var(--color-blue-sky);
+    transform: translateX(-50%) translateX(2px);
+  }
+  75% {
+    border-color: var(--color-accent-red);
+    transform: translateX(-50%) translateX(-1px);
+  }
+  100% {
+    border-color: var(--color-blue-sky);
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes cs-img-base-jitter {
+  0% {
+    transform: translateX(-2px);
+    filter: contrast(1.18) brightness(1.06);
+  }
+  25% {
+    transform: translateX(2px);
+  }
+  50% {
+    transform: translateX(-1.5px);
+    filter: contrast(1.25) brightness(1.1);
+  }
+  75% {
+    transform: translateX(1.5px);
+  }
+  100% {
+    transform: translateX(0);
+    filter: none;
+  }
+}
+
+@keyframes cs-img-static-red {
+  0% {
+    opacity: 0.92;
+    transform: translate(-9px, -1px) scaleX(1.02);
+    clip-path: inset(8% 0 68% 0);
+  }
+  20% {
+    opacity: 0.88;
+    transform: translate(8px, 1px);
+    clip-path: inset(56% 0 16% 0);
+  }
+  40% {
+    opacity: 0.95;
+    transform: translate(-11px, 0) scaleX(1.03);
+    clip-path: inset(28% 0 44% 0);
+  }
+  60% {
+    opacity: 0.85;
+    transform: translate(7px, -1px);
+    clip-path: inset(74% 0 5% 0);
+  }
+  80% {
+    opacity: 0.9;
+    transform: translate(-6px, 1px);
+    clip-path: inset(14% 0 58% 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes cs-img-static-cyan {
+  0% {
+    opacity: 0.92;
+    transform: translate(9px, 1px) scaleX(1.02);
+    clip-path: inset(22% 0 52% 0);
+  }
+  20% {
+    opacity: 0.9;
+    transform: translate(-8px, -1px);
+    clip-path: inset(5% 0 76% 0);
+  }
+  40% {
+    opacity: 0.95;
+    transform: translate(11px, 0) scaleX(1.03);
+    clip-path: inset(62% 0 12% 0);
+  }
+  60% {
+    opacity: 0.88;
+    transform: translate(-7px, 1px);
+    clip-path: inset(38% 0 34% 0);
+  }
+  80% {
+    opacity: 0.9;
+    transform: translate(6px, -1px);
+    clip-path: inset(48% 0 24% 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes cs-img-static-bars {
+  0% {
+    opacity: 0.85;
+    transform: translateY(-6px);
+  }
+  33% {
+    opacity: 0.45;
+    transform: translateY(8px);
+  }
+  66% {
+    opacity: 0.9;
+    transform: translateY(-4px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}

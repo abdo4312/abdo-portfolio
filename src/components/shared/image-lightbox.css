@@ -1,0 +1,74 @@
+.lightbox {
+  padding: 0;
+  margin: auto;
+  border: none;
+  background: transparent;
+  max-width: none;
+  max-height: none;
+  overflow: visible;
+}
+
+.lightbox[open] {
+  animation: lightbox-in 0.2s ease-out;
+}
+
+.lightbox::backdrop {
+  background: color-mix(in srgb, var(--color-bg-primary) 92%, transparent);
+  backdrop-filter: blur(4px);
+}
+
+.lightbox-figure {
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--color-grid-line);
+  background: var(--color-bg-secondary);
+}
+
+.lightbox-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+.lightbox-caption {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-grid-line);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--color-text-secondary);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -36px;
+  right: 0;
+  padding: 4px 10px;
+  border: 1px solid var(--color-grid-line);
+  background: var(--color-bg-secondary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus-visible {
+  color: var(--color-blue-sky);
+  border-color: var(--color-blue-sky);
+}
+
+html:has(.lightbox[open]) {
+  overflow: hidden;
+}
+
+@keyframes lightbox-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}

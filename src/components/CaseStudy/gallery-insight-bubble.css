@@ -1,0 +1,62 @@
+/* Base span: inline-block so the absolute pseudo layers can sit exactly on it. */
+.gallery-insight-glitch {
+  position: relative;
+  display: inline-block;
+}
+
+/* Hidden by default; only the pseudo layers animate — zero reflow, zero layout shift. */
+.gallery-insight-glitch::before,
+.gallery-insight-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Light burst: single run per pulse, then back to base opacity 0 (no fill mode). */
+.gallery-insight-glitch.is-glitching::before {
+  color: var(--color-blue-sky);
+  animation: gallery-insight-glitch-cyan 0.4s steps(2, end) 1;
+}
+
+.gallery-insight-glitch.is-glitching::after {
+  color: var(--color-accent-red);
+  animation: gallery-insight-glitch-red 0.4s steps(2, end) 1;
+}
+
+@keyframes gallery-insight-glitch-cyan {
+  0% {
+    opacity: 1;
+    transform: translateX(2px);
+    clip-path: inset(0 0 55% 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-2px);
+    clip-path: inset(50% 0 0 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+}
+
+@keyframes gallery-insight-glitch-red {
+  0% {
+    opacity: 1;
+    transform: translateX(-2px);
+    clip-path: inset(55% 0 0 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(2px);
+    clip-path: inset(0 0 50% 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+}

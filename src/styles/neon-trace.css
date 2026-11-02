@@ -1,0 +1,37 @@
+.neon-trace {
+  position: relative;
+}
+
+.neon-trace::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--trace-angle),
+    transparent 0%,
+    transparent 75%,
+    #4fa8e0 92%,
+    #7ec4f0 97%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: neon-trace-rotate 4s linear infinite;
+}
+
+@property --trace-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes neon-trace-rotate {
+  to {
+    --trace-angle: 360deg;
+  }
+}

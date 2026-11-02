@@ -1,0 +1,59 @@
+#!/bin/bash
+
+echo "🔍 Running code review workflow..."
+
+# Get staged files
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(ts|tsx|js|jsx)$')
+
+if [ -z "$STAGED_FILES" ]; then
+  echo "✅ No TS/JS files to review"
+  exit 0
+fi
+
+echo "📝 Files to review:"
+echo "$STAGED_FILES"
+echo ""
+
+# 1. Clean unnecessary comments
+echo "🧹 Cleaning unnecessary comments..."
+for file in $STAGED_FILES; do
+  if [ -f "$file" ]; then
+    node scripts/clean-comments.js "$file"
+    git add "$file"
+  fi
+done
+echo "✅ Comments cleaned"
+echo ""
+
+# 2. Run ESLint with auto-fix
+echo "🔧 Running ESLint..."
+cd "$(git rev-parse --show-toplevel)"
+npx eslint --fix $STAGED_FILES 2>&1
+ESLINT_EXIT=$?
+if [ $ESLINT_EXIT -ne 0 ]; then
+  echo ""
+  echo "❌ ESLint found errors that need to be fixed"
+  echo "Please fix the errors above and try committing again"
+  git diff --cached -- $STAGED_FILES
+  exit 1
+fi
+# Re-add files after eslint --fix
+git add $STAGED_FILES
+echo "✅ ESLint passed"
+echo ""
+
+# 3. Run TypeScript type check
+echo "🔍 Running TypeScript type check..."
+npx tsc --noEmit 2>&1
+TSC_EXIT=$?
+if [ $TSC_EXIT -ne 0 ]; then
+  echo ""
+  echo "❌ TypeScript found type errors / potential bugs"
+  echo "Please fix the errors above and try committing again"
+  exit 1
+fi
+echo "✅ TypeScript check passed"
+echo ""
+
+echo "🎉 Code review completed successfully! Proceeding with commit..."
+exit 0
