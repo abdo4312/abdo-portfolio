@@ -14,3 +14,16 @@ Run:
     npm run review         # whole project once
     git commit             # blocked automatically if there are errors
 Optional n8n rules: REVIEW_URL=http://localhost:5678/webhook/code-review npm run review
+
+## Autosave
+
+Commit and push automatically once edits settle, instead of remembering to do it.
+
+    npm run autosave                            # commit + push after 60s without edits
+    AUTOSAVE_DEBOUNCE_MS=15000 npm run autosave # shorter settle window
+
+Watches `src/`, `public/` and the root config files. Empty diffs produce no
+commit. A blocked commit (lint-staged) or a failed push is written to
+`reports/autosave.log` and retried on the next change.
+
+<!-- autosave probe -->

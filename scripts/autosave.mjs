@@ -32,6 +32,7 @@ const TARGETS = [
   'tsconfig.app.json',
   'tsconfig.node.json',
   'eslint.config.js',
+  'README.md',
 ]
 const IGNORE = /(^|\/)(node_modules|dist|reports|\.git)(\/|$)/
 
