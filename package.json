@@ -12,6 +12,7 @@
     "review:start": "npm run review:watch",
     "prepare": "husky",
     "review": "node tools/review-report.mjs",
+    "autosave": "node scripts/autosave.mjs",
     "typecheck": "tsc -b",
     "dev:all": "concurrently -k -n vite,review \"vite\" \"REVIEW_URL=http://localhost:5678/webhook/code-review node tools/code-review-watch.js\""
   },
