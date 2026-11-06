@@ -17,6 +17,13 @@ const ProjectSheet = ({ project }: ProjectSheetProps) => {
   const glitching = useGlitchPulse(true)
   const caseStudy = getCaseStudyBySlug(project.id)
 
+  const caseStudyHref =
+    project.id === 'aroma'
+      ? '/work/aroma'
+      : caseStudy
+        ? `/work/${caseStudy.slug}`
+        : undefined
+
   return (
     <DrawnFrame className="bg-bg-elevated">
       <CornerMarks />
@@ -34,14 +41,18 @@ const ProjectSheet = ({ project }: ProjectSheetProps) => {
               <dt className="font-mono text-[10px] tracking-[0.2em] text-text-muted mb-1.5">
                 ROLE
               </dt>
-              <dd className="font-mono text-sm text-text-primary">{project.role}</dd>
+              <dd className="font-mono text-sm text-text-primary">
+                {project.role}
+              </dd>
             </div>
 
             <div className="mb-6">
               <dt className="font-mono text-[10px] tracking-[0.2em] text-text-muted mb-1.5">
                 STACK
               </dt>
-              <dd className="font-mono text-sm text-text-primary">{project.stack}</dd>
+              <dd className="font-mono text-sm text-text-primary">
+                {project.stack}
+              </dd>
             </div>
 
             <div className="mb-6">
@@ -62,12 +73,14 @@ const ProjectSheet = ({ project }: ProjectSheetProps) => {
               <dt className="font-mono text-[10px] tracking-[0.2em] text-text-muted mb-1.5">
                 METRIC
               </dt>
-              <dd className="font-mono text-sm text-blue-sky">{project.metric}</dd>
+              <dd className="font-mono text-sm text-blue-sky">
+                {project.metric}
+              </dd>
             </div>
           </dl>
 
-          {caseStudy && (
-            <Link to={`/work/${caseStudy.slug}`} className="cta-stamp">
+          {caseStudyHref && (
+            <Link to={caseStudyHref} className="cta-stamp">
               OPEN CASE STUDY <span aria-hidden="true">→</span>
             </Link>
           )}
@@ -75,8 +88,12 @@ const ProjectSheet = ({ project }: ProjectSheetProps) => {
       </div>
 
       <div className={`title-block title-stamp ${glitching ? 'is-glitching' : ''}`}>
-        <span data-text={project.titleBlock.dwg}>{project.titleBlock.dwg}</span>
-        <span data-text={project.titleBlock.version}>{project.titleBlock.version}</span>
+        <span data-text={project.titleBlock.dwg}>
+          {project.titleBlock.dwg}
+        </span>
+        <span data-text={project.titleBlock.version}>
+          {project.titleBlock.version}
+        </span>
         <span className="status" data-text={project.titleBlock.status}>
           {project.titleBlock.status}
         </span>

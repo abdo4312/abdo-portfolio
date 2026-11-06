@@ -1,0 +1,863 @@
+.aroma-cs {
+  --ac-panel: #111923;
+  --ac-panel-raised: #151e28;
+  --ac-border: #293744;
+  --ac-border-bright: #3b728d;
+  --ac-text: #edf2f6;
+  --ac-copy: #c4ced7;
+  --ac-muted: #91a0af;
+  --ac-blue: #62bce8;
+
+  position: relative;
+  z-index: 10;
+  padding: clamp(6.5rem, 9vw, 8.5rem) 0 3rem;
+  color: var(--ac-text);
+}
+
+.aroma-cs,
+.aroma-cs * {
+  box-sizing: border-box;
+}
+
+.aroma-cs__container {
+  width: min(1200px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+.aroma-cs__eyebrow {
+  margin: 0;
+  color: var(--ac-blue);
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  line-height: 1.6;
+}
+
+.aroma-cs__hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  padding-bottom: clamp(4rem, 7vw, 6.5rem);
+}
+
+.aroma-cs__hero-copy {
+  min-width: 0;
+  animation: aroma-cs-rise-in 520ms ease-out both;
+}
+
+.aroma-cs__hero > .aroma-cs__figure {
+  animation: aroma-cs-rise-in 560ms 100ms ease-out both;
+}
+
+.aroma-cs__hero h1 {
+  margin: 1.4rem 0 1.5rem;
+  color: var(--ac-text);
+  font-size: clamp(3.8rem, 7vw, 6rem);
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+}
+
+.aroma-cs__hero h1 span {
+  display: block;
+  color: var(--ac-blue);
+}
+
+.aroma-cs__hero-lead {
+  margin: 0 0 1.1rem;
+  color: var(--ac-text);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.5;
+}
+
+.aroma-cs__hero-description {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--ac-copy);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.aroma-cs__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.65rem;
+}
+
+.aroma-cs__tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.15rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--ac-border);
+  border-radius: 3px;
+  background: rgba(17, 25, 35, 0.88);
+  color: var(--ac-muted);
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  font-size: 0.63rem;
+  letter-spacing: 0.13em;
+}
+
+.aroma-cs__tag--accent {
+  border-color: #31536a;
+  color: #83c9ea;
+}
+
+.aroma-cs__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin: 1.7rem 0 0;
+}
+
+.aroma-cs__meta > div {
+  min-width: 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--ac-border);
+  border-radius: 4px;
+  background: rgba(17, 25, 35, 0.9);
+}
+
+.aroma-cs__meta dt {
+  margin-bottom: 0.45rem;
+  color: var(--ac-blue);
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  font-size: 0.63rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+.aroma-cs__meta dd {
+  margin: 0;
+  color: var(--ac-text);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.aroma-cs__text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+  color: var(--ac-blue);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.aroma-cs__text-link:hover,
+.aroma-cs__footer a:hover {
+  color: #a0dcf5;
+}
+
+/* Preserve each screenshot's original ratio. No stretching or cropping. */
+.aroma-cs__figure {
+  min-width: 0;
+  margin: 0;
+}
+
+.aroma-cs__image-frame {
+  padding: 0.6rem;
+  border: 1px solid var(--ac-border-bright);
+  border-radius: 6px;
+  background: rgba(17, 25, 35, 0.96);
+  box-shadow: 0 12px 38px rgba(0, 0, 0, 0.22);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.aroma-cs__image-frame img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .aroma-cs__figure:hover .aroma-cs__image-frame {
+    border-color: #68bfe7;
+    box-shadow:
+      0 0 0 1px rgba(98, 188, 232, 0.16),
+      0 12px 38px rgba(0, 0, 0, 0.22);
+  }
+}
+
+.aroma-cs__caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+  color: var(--ac-muted);
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+}
+
+.aroma-cs__caption-note {
+  color: #8493a1;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0;
+}
+
+.aroma-cs__section {
+  padding: clamp(3.8rem, 7vw, 6.5rem) 0;
+  border-top: 1px solid rgba(80, 100, 118, 0.42);
+  scroll-margin-top: 100px;
+}
+
+.aroma-cs__section.is-revealed > * {
+  animation: aroma-cs-rise-in 480ms ease-out both;
+}
+
+.aroma-cs__section.is-revealed > *:not(:first-child) {
+  animation-delay: 90ms;
+}
+
+.aroma-cs__section-heading {
+  max-width: 56rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.aroma-cs__section-heading h2 {
+  margin: 0.85rem 0 0.8rem;
+  color: var(--ac-text);
+  font-size: clamp(2rem, 4.1vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+.aroma-cs__section-description {
+  max-width: 52rem;
+  margin: 0;
+  color: var(--ac-copy);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* Horizontal shopping-flow diagram */
+.aroma-cs__flow-card {
+  position: relative;
+  padding: 68px 28px 24px;
+  overflow: hidden;
+  border: 1px solid var(--ac-border);
+  border-radius: 6px;
+  background: rgba(17, 25, 35, 0.94);
+}
+
+.aroma-cs__flow-card-label {
+  position: absolute;
+  top: 22px;
+  left: 28px;
+  margin: 0;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid #31495b;
+  border-radius: 3px;
+  background: #15222d;
+  color: #75c5eb;
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+}
+
+.aroma-cs__flow-diagram {
+  position: relative;
+  height: 264px;
+  isolation: isolate;
+}
+
+.aroma-cs__flow-lines {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.aroma-cs__flow-line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.aroma-cs__flow-line--beans {
+  stroke: #e1b25d;
+}
+
+.aroma-cs__flow-line--box {
+  stroke: #62bce8;
+}
+
+.aroma-cs__flow-line--next {
+  stroke: #d5dee6;
+}
+
+.aroma-cs__flow-diagram.is-visible .aroma-cs__flow-line--beans,
+.aroma-cs__flow-diagram.is-visible .aroma-cs__flow-line--box {
+  animation: aroma-cs-draw-line 720ms ease-out forwards;
+}
+
+.aroma-cs__flow-diagram.is-visible .aroma-cs__flow-line--next {
+  animation: aroma-cs-draw-line 560ms 620ms ease-out forwards;
+}
+
+.aroma-cs__flow-arrow {
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.aroma-cs__flow-diagram.is-visible .aroma-cs__flow-arrow--branches {
+  opacity: 1;
+  transition-delay: 740ms;
+}
+
+.aroma-cs__flow-diagram.is-visible .aroma-cs__flow-arrow--shared {
+  opacity: 1;
+  transition-delay: 1180ms;
+}
+
+.aroma-cs__flow-node {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  height: 96px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 0;
+  padding: 0.85rem 1rem;
+  border: 1px solid #526779;
+  border-radius: 4px;
+  background: #151e28;
+}
+
+.aroma-cs__flow-node h3 {
+  margin: 0;
+  color: #edf3f7;
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+}
+
+.aroma-cs__flow-node p {
+  margin: 0;
+  color: #aebbc5;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.aroma-cs__flow-node--home {
+  top: calc(50% - 48px);
+  left: 0;
+  width: 15%;
+}
+
+.aroma-cs__flow-node--beans {
+  top: calc(28% - 48px);
+  left: 23.8%;
+  width: 23.7%;
+  border-color: #b58a47;
+  background: #211d17;
+}
+
+.aroma-cs__flow-node--beans h3 {
+  color: #edc573;
+}
+
+.aroma-cs__flow-node--box {
+  top: calc(78% - 48px);
+  left: 23.8%;
+  width: 23.7%;
+  border-color: #4f9bc0;
+  background: #14202a;
+}
+
+.aroma-cs__flow-node--box h3 {
+  color: #79c8ec;
+}
+
+.aroma-cs__flow-node--cart {
+  top: calc(50% - 48px);
+  left: 56%;
+  width: 14.9%;
+}
+
+.aroma-cs__flow-node--delivery {
+  top: calc(50% - 48px);
+  left: 79%;
+  width: 19.2%;
+}
+
+.aroma-cs__inline-note {
+  margin: 1.2rem 0 0;
+  padding-left: 0.9rem;
+  border-left: 3px solid var(--ac-blue);
+  color: var(--ac-copy);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* Shopping sections */
+.aroma-cs__split-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: start;
+  gap: clamp(2rem, 4vw, 4rem);
+}
+
+.aroma-cs__split-grid--copy-first {
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+}
+
+.aroma-cs__copy {
+  min-width: 0;
+  color: var(--ac-copy);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.aroma-cs__copy > p:first-child {
+  margin-top: 0;
+}
+
+.aroma-cs__feature-list {
+  display: grid;
+  gap: 1.1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aroma-cs__feature-list li {
+  display: grid;
+  grid-template-columns: 0.7rem minmax(0, 1fr);
+  column-gap: 0.7rem;
+}
+
+.aroma-cs__feature-list li::before {
+  width: 0.42rem;
+  height: 0.42rem;
+  margin-top: 0.58rem;
+  border-radius: 50%;
+  background: var(--ac-blue);
+  content: "";
+}
+
+.aroma-cs__feature-list strong,
+.aroma-cs__feature-list span {
+  grid-column: 2;
+}
+
+.aroma-cs__feature-list strong {
+  color: var(--ac-text);
+  font-size: 0.93rem;
+}
+
+.aroma-cs__feature-list span {
+  color: var(--ac-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.aroma-cs__callout {
+  margin-top: 1.5rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid #426f88;
+  border-radius: 4px;
+  background: rgba(17, 25, 35, 0.9);
+}
+
+.aroma-cs__callout-label {
+  margin: 0 0 0.45rem;
+  color: var(--ac-blue);
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+}
+
+.aroma-cs__callout > p:last-child {
+  margin: 0;
+  color: var(--ac-copy);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.aroma-cs__capacities {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin: 1.5rem 0;
+}
+
+.aroma-cs__capacities > div {
+  display: flex;
+  min-height: 4.5rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  border: 1px solid #465767;
+  border-radius: 4px;
+  background: var(--ac-panel-raised);
+}
+
+.aroma-cs__capacities strong {
+  color: var(--ac-text);
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.aroma-cs__capacities span {
+  color: var(--ac-muted);
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  font-size: 0.57rem;
+  letter-spacing: 0.14em;
+}
+
+/* Cart and delivery preview */
+.aroma-cs__cart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.aroma-cs__cart-card {
+  min-width: 0;
+}
+
+.aroma-cs__cart-card h3 {
+  margin: 1.1rem 0 0.45rem;
+  color: var(--ac-text);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.aroma-cs__cart-card > p {
+  margin: 0;
+  color: var(--ac-copy);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.aroma-cs__notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin-top: 2rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid #426f88;
+  border-radius: 4px;
+  background: rgba(17, 25, 35, 0.9);
+}
+
+.aroma-cs__notice > span {
+  padding-top: 0.1rem;
+  color: var(--ac-blue);
+  font-size: 0.8rem;
+}
+
+.aroma-cs__notice p {
+  margin: 0;
+  color: var(--ac-copy);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* Role and project scope */
+.aroma-cs__role-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(17rem, 1fr);
+  gap: 1.5rem;
+}
+
+.aroma-cs__role-card,
+.aroma-cs__scope-card {
+  min-width: 0;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--ac-border);
+  border-radius: 5px;
+  background: rgba(17, 25, 35, 0.94);
+}
+
+.aroma-cs__role-card {
+  border-color: #3d718a;
+}
+
+.aroma-cs__role-card h3 {
+  margin: 1.3rem 0 0.8rem;
+  color: var(--ac-text);
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.aroma-cs__role-card > p {
+  margin: 0 0 1rem;
+  color: var(--ac-copy);
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+.aroma-cs__role-card .aroma-cs__role-footnote {
+  margin: 1.4rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ac-border);
+  color: var(--ac-muted);
+  font-size: 0.82rem;
+}
+
+.aroma-cs__scope-card > .aroma-cs__eyebrow {
+  margin-bottom: 1.25rem;
+}
+
+.aroma-cs__scope-card ul {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aroma-cs__scope-card li {
+  position: relative;
+  padding: 0.9rem 0 0.9rem 1.1rem;
+  border-bottom: 1px solid var(--ac-border);
+  color: var(--ac-copy);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.aroma-cs__scope-card li::before {
+  position: absolute;
+  top: 1.25rem;
+  left: 0;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--ac-blue);
+  content: "";
+}
+
+.aroma-cs__scope-card li:last-child {
+  border-bottom: 0;
+}
+
+.aroma-cs__scope-note {
+  margin: 1.1rem 0 0;
+  color: var(--ac-muted);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+/* Footer */
+.aroma-cs__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem 0 0;
+  border-top: 1px solid rgba(80, 100, 118, 0.42);
+}
+
+.aroma-cs__footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--ac-blue);
+  font-size: 0.88rem;
+  text-decoration: none;
+}
+
+.aroma-cs__footer-label {
+  color: var(--ac-muted);
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .aroma-cs__hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .aroma-cs__hero-copy {
+    max-width: 45rem;
+  }
+
+  .aroma-cs__hero .aroma-cs__figure {
+    width: 100%;
+  }
+
+  .aroma-cs__split-grid,
+  .aroma-cs__split-grid--copy-first {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .aroma-cs__role-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .aroma-cs__flow-card {
+    padding: 64px 20px 20px;
+  }
+
+  .aroma-cs__flow-card-label {
+    left: 20px;
+  }
+
+  .aroma-cs__flow-diagram {
+    display: grid;
+    height: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  .aroma-cs__flow-lines {
+    display: none;
+  }
+
+  .aroma-cs__flow-node {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: auto;
+    height: auto;
+    min-height: 88px;
+  }
+
+  .aroma-cs__flow-node--home,
+  .aroma-cs__flow-node--cart,
+  .aroma-cs__flow-node--delivery {
+    grid-column: 1 / -1;
+  }
+
+  .aroma-cs__flow-node--home {
+    min-height: 72px;
+    text-align: center;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .aroma-cs {
+    padding-top: 6.5rem;
+  }
+
+  .aroma-cs__container {
+    width: min(100% - 32px, 1200px);
+  }
+
+  .aroma-cs__hero h1 {
+    font-size: clamp(3.5rem, 17vw, 5rem);
+  }
+
+  .aroma-cs__meta {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .aroma-cs__cart-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .aroma-cs__footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .aroma-cs__footer-label {
+    font-size: 0.58rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .aroma-cs__flow-card {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .aroma-cs__flow-card-label {
+    left: 14px;
+    font-size: 0.54rem;
+  }
+
+  .aroma-cs__flow-diagram {
+    gap: 0.55rem;
+  }
+
+  .aroma-cs__flow-node {
+    padding: 0.75rem 0.65rem;
+  }
+
+  .aroma-cs__flow-node h3 {
+    font-size: 0.63rem;
+    letter-spacing: 0.07em;
+  }
+
+  .aroma-cs__flow-node p {
+    font-size: 0.68rem;
+  }
+}
+
+/* Motion */
+@keyframes aroma-cs-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aroma-cs-draw-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Respect the device's reduced-motion preference. */
+@media (prefers-reduced-motion: reduce) {
+  .aroma-cs__hero-copy,
+  .aroma-cs__hero > .aroma-cs__figure,
+  .aroma-cs__section.is-revealed > * {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+
+  .aroma-cs__image-frame {
+    transition: none;
+  }
+
+  .aroma-cs__flow-line,
+  .aroma-cs__flow-diagram.is-visible .aroma-cs__flow-line {
+    animation: none !important;
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+  }
+
+  .aroma-cs__flow-arrow {
+    opacity: 1;
+    transition: none;
+  }
+}

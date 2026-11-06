@@ -1,5 +1,6 @@
 // src/data/caseStudies.ts
 import type { GalleryImage } from './projects'
+
 import homeImg from '../assets/images/projects/road-to-islam/01-home.png'
 import prayerTimesImg from '../assets/images/projects/road-to-islam/02-prayer-times.png'
 import splashImg from '../assets/images/projects/road-to-islam/03-splash.png'
@@ -285,10 +286,10 @@ export const caseStudies: CaseStudyContent[] = [
       'The 30-day program tracks progress locally even before sign-in, syncing to the cloud only for authenticated users.',
     ],
     nextProject: {
-      title: 'Aroma',
-      tagline: 'UI architecture & state design — React · Zustand · TanStack Query · Zod',
-      note: 'CASE STUDY — PENDING',
-      href: '/#work',
+      title: 'Aroma Corner',
+      tagline: 'Coffee storefront & Box Builder — React · Zustand · TanStack Query',
+      note: 'FRONTEND SHOWCASE · MOCK DATA',
+      href: '/work/aroma',
     },
   },
 ]

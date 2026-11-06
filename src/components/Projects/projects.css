@@ -33,7 +33,7 @@
 
 @media (min-width: 1024px) {
   .sheet-body {
-    grid-template-columns: 1.3fr 1fr;
+    grid-template-columns: 1.5fr 1fr;
   }
 }
 
@@ -122,8 +122,8 @@
 .key-points div {
   display: flex;
   gap: 8px;
-  margin-bottom: 6px;
-  font-size: 12px;
+  margin-bottom: 8px;
+  font-size: 13px;
   color: var(--color-text-secondary);
 }
 

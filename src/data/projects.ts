@@ -49,11 +49,11 @@ export const projects: Project[] = [
     role: 'Solo developer — architecture, UI, both backends',
     stack: 'Electron · React · TypeScript · SQLite · Supabase',
     keyPoints: [
-      { number: 1, text: 'Dual-backend runtime switch' },
-      { number: 2, text: '7 CRUD views, one interface' },
+      { number: 1, text: 'Dual-backend: SQLite or Supabase via a config flag' },
+      { number: 2, text: '7 views, one interface' },
       { number: 3, text: 'PDF / Excel / thermal receipt export' },
     ],
-    metric: '100+ CUSTOMERS · SEASONAL USE',
+    metric: '100 CUSTOMERS · SEASONAL USE',
     titleBlock: {
       dwg: 'DWG: BOOKSTORE-ORDER-MANAGER',
       version: 'REV: v2.4.0',
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     title: 'Road to Islam',
     viewport: 'mobile',
     role: 'Solo developer — React UI + native Android layer',
-    stack: 'React · Capacitor · 17 native Java modules',
+    stack: 'React · Capacitor · 17 native Java files',
     keyPoints: [
       { number: 1, text: 'Native Adhan overlay (WindowManager)' },
       { number: 2, text: 'Hourly re-scheduling via WorkManager' },
@@ -98,14 +98,14 @@ export const projects: Project[] = [
   {
     id: 'aroma',
     tabLabel: 'A-03 / AROMA',
-    title: 'Aroma',
+    title: 'Aroma Corner',
     viewport: 'desktop',
-    role: 'Solo developer — UI architecture & state design',
+    role: 'Product & UX direction — AI-assisted, human-directedn',
     stack: 'React · Zustand · TanStack Query · Zod',
     keyPoints: [
-      { number: 1, text: 'Unified mock/real service layer' },
-      { number: 2, text: '5 independent state domains' },
-      { number: 3, text: 'Form validation via Zod + RHF' },
+      { number: 1, text: 'Two shopping paths — beans & Box Builder' },
+      { number: 2, text: 'Cart keeps box contents expandable' },
+      { number: 3, text: 'Delivery Preview checkout — demo only' },
     ],
     metric: 'UI/UX & FRONTEND ARCHITECTURE',
     titleBlock: {

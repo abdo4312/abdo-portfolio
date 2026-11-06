@@ -5,6 +5,8 @@ import BlueprintBackground from '../components/Background/BlueprintBackground'
 import Hero from '../components/Hero/Hero'
 import About from '../components/About/About'
 import ProjectTabs from '../components/Projects/ProjectTabs'
+import TechSpecs from '../components/TechSpecs/TechSpecs'
+import EngineeringDecisions from '../components/Engineering/EngineeringDecisions'
 import Contact from '../components/Contact/Contact'
 
 function HomePage() {
@@ -24,6 +26,8 @@ function HomePage() {
         <Hero entered={!showCurtain} />
         <About />
         <ProjectTabs />
+        <TechSpecs />
+        <EngineeringDecisions />
         <Contact />
       </div>
     </>
