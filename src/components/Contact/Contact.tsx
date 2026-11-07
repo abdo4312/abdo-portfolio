@@ -1,68 +1,162 @@
-import CornerMarks from '../shared/CornerMarks'
-import { useInView } from '../../hooks/useInView'
+import { useState, type FormEvent } from 'react'
+import SectionHeader from '../shared/SectionHeader'
 
-const CONTACT_LINKS = [
-  {
-    label: 'EMAIL',
-    value: 'abdorhamnk134@gmail.com',
-    href: 'mailto:abdorhamnk134@gmail.com',
-  },
-  {
-    label: 'GITHUB',
-    value: 'github.com/abdo4312',
-    href: 'https://github.com/abdo4312',
-  },
-]
+const EMAIL = 'abdorhamnk134@gmail.com'
+const GITHUB = 'https://github.com/abdo4312'
 
-const Contact = () => {
-  const { ref, visible } = useInView<HTMLElement>(0.3)
+const FIELD =
+  'w-full border border-grid-line bg-bg-primary px-4 py-3 font-sans text-base text-text-primary outline-none transition-colors placeholder:text-text-muted focus:border-blue-sky'
+
+const LABEL =
+  'mb-2 block font-mono text-xs tracking-[0.2em] text-text-secondary uppercase'
+
+export default function Contact() {
+  const [name, setName] = useState('')
+  const [from, setFrom] = useState('')
+  const [message, setMessage] = useState('')
+  const [copied, setCopied] = useState(false)
+
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault()
+    const subject = `Portfolio inquiry from ${name}`
+    const body = `${message}\n\n— ${name}\nReply to: ${from}`
+    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`
+  }
+
+  function copyEmail() {
+    navigator.clipboard
+      .writeText(EMAIL)
+      .then(() => {
+        setCopied(true)
+        setTimeout(() => setCopied(false), 2000)
+      })
+      .catch(() => setCopied(false))
+  }
 
   return (
     <section
       id="contact"
-      ref={ref}
-      className="relative px-8 lg:px-16 py-28 lg:py-36"
+      className="mx-auto max-w-7xl px-6 py-16 lg:px-12 lg:py-20"
     >
-      <div className="absolute left-6 lg:left-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none" />
-      <div className="absolute right-6 lg:right-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none" />
+      <SectionHeader
+        eyebrow="07 — CONTACT"
+        title="LET'S WORK TOGETHER"
+        meta="OPEN TO FULL-TIME & FREELANCE"
+      />
 
-      <div
-        className={`max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center transition-all duration-700 ease-out ${
-          visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-        }`}
-      >
-        <div>
-          <h2 className="font-mono text-xs lg:text-sm tracking-[0.3em] text-blue-sky mb-10">
-            {'//'} 04 — CONTACT
-          </h2>
-          <p className="font-sans text-lg lg:text-xl text-text-primary leading-relaxed">
-            Open to full-time roles and freelance work. Reach out directly —
-            no forms, no gatekeeping.
-          </p>
-        </div>
+      <div className="mt-10 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+        <form
+          onSubmit={handleSubmit}
+          className="border border-grid-line bg-bg-secondary p-6 lg:p-8"
+        >
+          <div className="mb-6 flex items-center justify-between border-b border-grid-line pb-3 font-mono text-xs tracking-[0.2em] uppercase">
+            <span className="text-blue-sky">SEND A MESSAGE</span>
+            <span className="text-text-muted">OPENS YOUR EMAIL APP</span>
+          </div>
 
-        <div className="relative flex flex-col gap-4 border border-grid-line bg-bg-secondary/30 p-6 lg:p-8">
-          <CornerMarks />
-          {CONTACT_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              target={link.href.startsWith('http') ? '_blank' : undefined}
-              rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
-              className="px-6 py-4 border border-grid-line hover:border-blue-sky transition-colors duration-200 font-mono"
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label htmlFor="c-name" className={LABEL}>
+                01 — Your name
+              </label>
+              <input
+                id="c-name"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className={FIELD}
+                placeholder="Your name"
+                autoComplete="name"
+              />
+            </div>
+            <div>
+              <label htmlFor="c-email" className={LABEL}>
+                02 — Your email
+              </label>
+              <input
+                id="c-email"
+                type="email"
+                required
+                value={from}
+                onChange={(e) => setFrom(e.target.value)}
+                className={FIELD}
+                placeholder="you@company.com"
+                autoComplete="email"
+              />
+            </div>
+          </div>
+
+          <div className="mt-5">
+            <label htmlFor="c-message" className={LABEL}>
+              03 — Message
+            </label>
+            <textarea
+              id="c-message"
+              required
+              rows={6}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              className={`${FIELD} resize-y`}
+              placeholder="What are you building, and how can I help?"
+            />
+          </div>
+
+          <div className="mt-6 flex flex-wrap items-center gap-4">
+            <button
+              type="submit"
+              className="bg-blue-sky px-6 py-3 font-mono text-xs font-medium tracking-[0.15em] text-bg-primary uppercase transition-colors hover:bg-blue-glow"
             >
-              <span className="block text-[10px] tracking-[0.2em] text-text-muted mb-1">
-                {link.label}
-              </span>
-              <span className="block text-sm text-text-primary break-all">
-                {link.value}
-              </span>
+              Write to me →
+            </button>
+            <span className="font-mono text-xs tracking-wider text-text-muted">
+              NO SERVER, NO TRACKING. YOUR EMAIL APP SENDS IT.
+            </span>
+          </div>
+        </form>
+
+        <div className="space-y-6">
+          <div className="border border-grid-line bg-bg-secondary p-6">
+            <div className="mb-4 border-b border-grid-line pb-3 font-mono text-xs tracking-[0.2em] text-blue-sky uppercase">
+              DIRECT EMAIL
+            </div>
+            <div className="break-all font-mono text-base text-text-primary">
+              {EMAIL}
+            </div>
+            <button
+              type="button"
+              onClick={copyEmail}
+              className="mt-4 border border-blue-sky px-4 py-2 font-mono text-xs tracking-[0.15em] text-blue-sky uppercase transition-colors hover:bg-blue-sky/10"
+            >
+              {copied ? 'Copied ✓' : 'Copy'}
+            </button>
+          </div>
+
+          <div className="border border-grid-line bg-bg-secondary p-6">
+            <div className="mb-4 border-b border-grid-line pb-3 font-mono text-xs tracking-[0.2em] text-blue-sky uppercase">
+              ELSEWHERE
+            </div>
+            <a
+              href={GITHUB}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between font-mono text-sm tracking-wider text-text-primary transition-colors hover:text-blue-sky"
+            >
+              <span>GITHUB / abdo4312</span>
+              <span>↗</span>
             </a>
-          ))}
+          </div>
+
+          <div className="border border-grid-line bg-bg-secondary p-6 font-mono text-xs leading-relaxed tracking-wider text-text-secondary uppercase">
+            <div>CAIRO, EGYPT</div>
+            <div className="text-text-muted">30.0444°N / 31.2357°E</div>
+            <div className="mt-3 text-blue-sky">
+              POLAND &amp; EASTERN EUROPE
+            </div>
+          </div>
         </div>
       </div>
     </section>
   )
 }
-
-export default Contact

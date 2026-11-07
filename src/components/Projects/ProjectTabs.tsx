@@ -6,6 +6,7 @@ import ProjectCard from './ProjectCard'
 
 const getCaseStudyHref = (id: string) => {
   if (id === 'aroma') return '/work/aroma'
+  if (id === 'bookstore') return '/work/bookstore'
   const cs = getCaseStudyBySlug(id)
   return cs ? `/work/${cs.slug}` : undefined
 }

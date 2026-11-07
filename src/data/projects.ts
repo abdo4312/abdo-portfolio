@@ -100,7 +100,7 @@ export const projects: Project[] = [
     tabLabel: 'A-03 / AROMA',
     title: 'Aroma Corner',
     viewport: 'desktop',
-    role: 'Product & UX direction — AI-assisted, human-directedn',
+    role: 'Product & UX direction — AI-assisted, human-directed',
     stack: 'React · Zustand · TanStack Query · Zod',
     keyPoints: [
       { number: 1, text: 'Two shopping paths — beans & Box Builder' },

@@ -21,7 +21,20 @@
 }
 
 html {
+  font-size: 100%;
   scroll-padding-top: 6rem;
+}
+
+@media (min-width: 1280px) {
+  html {
+    font-size: 112.5%;
+  }
+}
+
+@media (min-width: 1700px) {
+  html {
+    font-size: 125%;
+  }
 }
 
 body {

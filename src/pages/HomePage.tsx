@@ -5,9 +5,11 @@ import BlueprintBackground from '../components/Background/BlueprintBackground'
 import Hero from '../components/Hero/Hero'
 import About from '../components/About/About'
 import ProjectTabs from '../components/Projects/ProjectTabs'
+import Process from '../components/Process/Process'
 import TechSpecs from '../components/TechSpecs/TechSpecs'
 import EngineeringDecisions from '../components/Engineering/EngineeringDecisions'
 import Contact from '../components/Contact/Contact'
+import Footer from '../components/Footer/Footer'
 
 function HomePage() {
   const siteRef = useRef<HTMLDivElement>(null)
@@ -26,9 +28,11 @@ function HomePage() {
         <Hero entered={!showCurtain} />
         <About />
         <ProjectTabs />
+        <Process />
         <TechSpecs />
         <EngineeringDecisions />
         <Contact />
+        <Footer />
       </div>
     </>
   )

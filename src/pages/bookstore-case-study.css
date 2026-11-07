@@ -1,0 +1,117 @@
+@keyframes bk-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bk-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.bk-reveal {
+  opacity: 0;
+}
+
+.bk-reveal.is-visible {
+  animation: bk-rise-in 560ms ease-out both;
+}
+
+.bk-reveal .bk-item {
+  opacity: 0;
+}
+
+.bk-reveal.is-visible .bk-item {
+  animation: bk-fade-in 480ms ease-out both;
+  animation-delay: calc(var(--i, 0) * 80ms + 120ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bk-reveal,
+  .bk-reveal .bk-item {
+    opacity: 1;
+    animation: none !important;
+    transform: none;
+  }
+}
+.bk-flow-node {
+  opacity: 0;
+}
+
+.bk-flow.is-visible .bk-flow-node {
+  animation: bk-fade-in 480ms ease-out both;
+  animation-delay: calc(var(--i, 0) * 460ms);
+}
+
+.bk-flow-link {
+  position: relative;
+  display: block;
+  width: 36px;
+  height: 10px;
+  flex-shrink: 0;
+}
+
+.bk-flow-line {
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  left: 4px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.bk-flow-head {
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transform: rotate(45deg);
+  opacity: 0;
+}
+
+.bk-flow.is-visible .bk-flow-line {
+  animation: bk-draw-line 320ms ease-out both;
+  animation-delay: calc(var(--i, 0) * 460ms + 280ms);
+}
+
+.bk-flow.is-visible .bk-flow-head {
+  animation: bk-fade-in 160ms ease-out both;
+  animation-delay: calc(var(--i, 0) * 460ms + 520ms);
+}
+
+@keyframes bk-draw-line {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bk-flow-node,
+  .bk-flow-head {
+    opacity: 1;
+    animation: none !important;
+  }
+
+  .bk-flow-line {
+    transform: scaleX(1);
+    animation: none !important;
+  }
+}
