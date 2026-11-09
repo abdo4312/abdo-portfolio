@@ -28,14 +28,6 @@ const DECISIONS = [
       'Zustand for UI state, TanStack Query for data, Zod for validation. A frontend showcase with mock data.',
     tags: ['Zustand', 'TanStack Query', 'Zod'],
   },
-  {
-    ref: '04',
-    kind: 'EXACT ARITHMETIC',
-    project: 'Mizan',
-    decision: 'Exact numbers, not approximate ones',
-    detail: 'Calculations are done with BigInt so results stay exact.',
-    tags: ['TypeScript', 'BigInt'],
-  },
 ]
 
 export default function EngineeringDecisions() {
@@ -54,7 +46,7 @@ export default function EngineeringDecisions() {
         {DECISIONS.map((d) => (
           <article
             key={d.ref}
-            className="border border-grid-line bg-bg-secondary p-6 transition-colors hover:border-blue-sky/60 lg:p-8"
+            className="border border-grid-line bg-bg-secondary p-6 transition-colors hover:border-blue-sky/60 lg:p-8 lg:last:col-span-2"
           >
             <div className="mb-5 flex items-center justify-between border-b border-grid-line pb-3 font-mono text-xs tracking-[0.2em] uppercase">
               <span className="text-blue-sky">{d.kind}</span>
