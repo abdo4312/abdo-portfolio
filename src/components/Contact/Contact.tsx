@@ -38,22 +38,24 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="mx-auto max-w-7xl px-6 py-16 lg:px-12 lg:py-20"
+      className="mx-auto max-w-xl px-4 py-16 lg:max-w-7xl lg:px-12 lg:py-20"
     >
       <SectionHeader
         eyebrow="07 — CONTACT"
-        title="LET'S WORK TOGETHER"
+        title="Let's work together"
         meta="OPEN TO FULL-TIME & FREELANCE"
       />
 
-      <div className="mt-10 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+      <div className="grid gap-6 lg:mt-10 lg:grid-cols-[1.4fr_1fr]">
         <form
           onSubmit={handleSubmit}
           className="border border-grid-line bg-bg-secondary p-6 lg:p-8"
         >
-          <div className="mb-6 flex items-center justify-between border-b border-grid-line pb-3 font-mono text-xs tracking-[0.2em] uppercase">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-b border-grid-line pb-3 font-mono text-xs tracking-[0.2em] uppercase">
             <span className="text-blue-sky">SEND A MESSAGE</span>
-            <span className="text-text-muted">OPENS YOUR EMAIL APP</span>
+            <span className="text-text-secondary lg:text-text-muted">
+              OPENS YOUR EMAIL APP
+            </span>
           </div>
 
           <div className="grid gap-5 sm:grid-cols-2">
@@ -106,11 +108,11 @@ export default function Contact() {
           <div className="mt-6 flex flex-wrap items-center gap-4">
             <button
               type="submit"
-              className="bg-blue-sky px-6 py-3 font-mono text-xs font-medium tracking-[0.15em] text-bg-primary uppercase transition-colors hover:bg-blue-glow"
+              className="bg-blue-sky px-6 py-3 font-mono text-xs font-medium tracking-[0.15em] text-bg-primary uppercase transition-colors hover:bg-blue-glow max-lg:min-h-12 max-lg:w-full"
             >
               Write to me →
             </button>
-            <span className="font-mono text-xs tracking-wider text-text-muted">
+            <span className="font-mono text-xs tracking-wider text-text-secondary lg:text-text-muted">
               NO SERVER, NO TRACKING. YOUR EMAIL APP SENDS IT.
             </span>
           </div>
@@ -127,7 +129,7 @@ export default function Contact() {
             <button
               type="button"
               onClick={copyEmail}
-              className="mt-4 border border-blue-sky px-4 py-2 font-mono text-xs tracking-[0.15em] text-blue-sky uppercase transition-colors hover:bg-blue-sky/10"
+              className="mt-4 border border-blue-sky px-4 py-2 font-mono text-xs tracking-[0.15em] text-blue-sky uppercase transition-colors hover:bg-blue-sky/10 max-lg:min-h-11"
             >
               {copied ? 'Copied ✓' : 'Copy'}
             </button>
@@ -141,7 +143,7 @@ export default function Contact() {
               href={GITHUB}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between font-mono text-sm tracking-wider text-text-primary transition-colors hover:text-blue-sky"
+              className="flex items-center justify-between font-mono text-sm tracking-wider text-text-primary transition-colors hover:text-blue-sky max-lg:min-h-11"
             >
               <span>GITHUB / abdo4312</span>
               <span>↗</span>
@@ -150,10 +152,10 @@ export default function Contact() {
 
           <div className="border border-grid-line bg-bg-secondary p-6 font-mono text-xs leading-relaxed tracking-wider text-text-secondary uppercase">
             <div>CAIRO, EGYPT</div>
-            <div className="text-text-muted">30.0444°N / 31.2357°E</div>
-            <div className="mt-3 text-blue-sky">
-              OPEN TO WORK
+            <div className="text-text-muted max-lg:hidden">
+              30.0444°N / 31.2357°E
             </div>
+            <div className="mt-3 text-blue-sky">OPEN TO WORK</div>
           </div>
         </div>
       </div>
