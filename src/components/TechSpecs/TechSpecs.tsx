@@ -44,45 +44,47 @@ const TechSpecs = () => {
     <section
       id="tools"
       ref={ref}
-      className="relative px-8 lg:px-16 py-28 lg:py-36"
+      className="relative px-4 py-16 lg:px-16 lg:py-36"
     >
-      <div className="absolute left-6 lg:left-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none" />
-      <div className="absolute right-6 lg:right-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none" />
+      <div className="absolute left-6 lg:left-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none max-lg:hidden" />
+      <div className="absolute right-6 lg:right-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none max-lg:hidden" />
 
       <div
-        className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${
-          visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+        className={`max-w-6xl mx-auto transition-all duration-700 ease-out max-lg:duration-500 ${
+          visible
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-6 max-lg:translate-y-3'
         }`}
       >
         <SectionHeader
           eyebrow="05 — TOOLS"
-          title="TECH STACK"
+          title="Tech stack"
           meta="FROM EACH PROJECT'S PACKAGE.JSON"
         />
 
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-4 max-lg:mx-auto max-lg:max-w-xl lg:grid-cols-3 lg:gap-6">
           {SUITES.map((suite) => (
             <div
               key={suite.id}
               className="relative border border-grid-line bg-bg-secondary/30 p-5 lg:p-6"
             >
               <CornerMarks />
-              <div className="mb-5 flex items-center justify-between border-b border-grid-line pb-3 font-mono text-[11px] tracking-[0.2em]">
+              <div className="mb-5 flex items-center justify-between border-b border-grid-line pb-3 font-mono text-[11px] tracking-[0.2em] max-lg:hidden">
                 <span className="text-text-muted">SUITE_{suite.id}</span>
               </div>
-              <h3 className="mb-5 font-display text-lg font-bold text-text-primary">
+              <h3 className="mb-4 font-display text-lg font-bold text-text-primary lg:mb-5">
                 {suite.title}
               </h3>
               <ul className="space-y-3">
                 {suite.items.map((item) => (
                   <li
                     key={item.name}
-                    className="flex items-baseline justify-between gap-4 border-b border-grid-line pb-2"
+                    className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-grid-line pb-2"
                   >
                     <span className="font-sans text-sm text-text-primary">
                       {item.name}
                     </span>
-                    <span className="text-right font-mono text-[10px] tracking-[0.1em] text-text-muted">
+                    <span className="text-right font-mono text-[10px] tracking-[0.1em] text-text-muted max-lg:text-[11px] max-lg:text-text-secondary">
                       {item.used}
                     </span>
                   </li>
@@ -92,7 +94,7 @@ const TechSpecs = () => {
           ))}
         </div>
 
-        <p className="mt-6 font-mono text-[11px] tracking-[0.1em] text-text-muted">
+        <p className="mt-6 font-mono text-[11px] leading-relaxed tracking-[0.1em] text-text-muted max-lg:text-text-secondary">
           ALL = Bookstore, Road to Islam, Aroma and this site. This is a list of
           what I used, not a skill rating.
         </p>
