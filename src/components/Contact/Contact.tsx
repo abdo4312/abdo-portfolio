@@ -152,7 +152,7 @@ export default function Contact() {
             <div>CAIRO, EGYPT</div>
             <div className="text-text-muted">30.0444°N / 31.2357°E</div>
             <div className="mt-3 text-blue-sky">
-              POLAND &amp; EASTERN EUROPE
+              OPEN TO WORK
             </div>
           </div>
         </div>

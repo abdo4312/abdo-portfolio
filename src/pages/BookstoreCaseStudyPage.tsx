@@ -553,7 +553,7 @@ export default function BookstoreCaseStudyPage() {
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-2 font-mono text-[10px] tracking-[0.16em] text-text-muted uppercase lg:px-12">
             <span className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-blue-sky" />
-              <span>SYS_STATUS: OPEN TO WORK · POLAND & EASTERN EUROPE</span>
+              <span>SYS_STATUS: OPEN TO WORK</span>
             </span>
             <span className="hidden sm:inline">{`LOC: CAIRO, EGYPT  |  RELEASE: V2.4.0`}</span>
           </div>
@@ -1089,7 +1089,8 @@ export default function BookstoreCaseStudyPage() {
             <p className="font-mono text-[10px] tracking-[0.18em] text-text-muted uppercase">SPECIFICATION STAMP</p>
             <p className="mt-2 font-display text-lg font-bold text-text-primary uppercase">OPEN TO WORK</p>
             <p className="mt-1 font-mono text-[11px] tracking-[0.12em] text-text-secondary uppercase">
-              POLAND & EASTERN EUROPE
+              OPEN TO WORK
+              FULL-TIME · FREELANCE
             </p>
             <p className="mt-3 font-mono text-[10px] tracking-[0.14em] text-blue-sky uppercase">
               FULL-TIME · FREELANCE

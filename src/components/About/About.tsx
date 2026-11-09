@@ -111,7 +111,7 @@ const About = () => {
                     BOOKSTORE ORDER MANAGER
                   </p>
                   <p className="font-mono text-xs text-blue-sky mt-0.5">
-                    100+ CUSTOMERS · SEASONAL USE
+                    100 CUSTOMERS · SEASONAL USE
                   </p>
                 </div>
                 <span className="px-3 py-1 border border-blue-sky/60 font-mono text-[11px] tracking-[0.2em] text-blue-sky">

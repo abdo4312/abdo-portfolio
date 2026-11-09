@@ -86,7 +86,7 @@ const Hero = ({ entered }: HeroProps) => {
         <div>
           <p className="hero-animate inline-flex items-center gap-3 border border-blue-sky/40 bg-blue-sky/5 px-3 py-1.5 mb-6 font-mono text-[11px] tracking-[0.2em] text-blue-sky">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-sky" aria-hidden="true" />
-            OPEN TO FULL-TIME & FREELANCE — POLAND & EASTERN EUROPE
+            OPEN TO WORK
           </p>
           <p className="hero-animate font-mono text-[11px] tracking-[0.2em] text-text-muted mb-6">
             LOC. CAIRO, EGYPT · 30.0444°N / 31.2357°E
