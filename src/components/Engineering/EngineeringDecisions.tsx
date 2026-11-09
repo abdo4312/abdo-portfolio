@@ -1,4 +1,5 @@
 import SectionHeader from '../shared/SectionHeader'
+import Accordion from '../shared/Accordion'
 
 const DECISIONS = [
   {
@@ -30,11 +31,24 @@ const DECISIONS = [
   },
 ]
 
+const TagList = ({ tags }: { tags: string[] }) => (
+  <div className="flex flex-wrap gap-2">
+    {tags.map((t) => (
+      <span
+        key={t}
+        className="border border-grid-line px-2.5 py-1 font-mono text-xs tracking-wider text-text-secondary"
+      >
+        {t}
+      </span>
+    ))}
+  </div>
+)
+
 export default function EngineeringDecisions() {
   return (
     <section
       id="decisions"
-      className="mx-auto max-w-7xl px-6 py-16 lg:px-12 lg:py-20"
+      className="mx-auto max-w-7xl px-6 py-16 max-lg:px-4 lg:px-12 lg:py-20"
     >
       <SectionHeader
         eyebrow="06 — DECISIONS"
@@ -42,7 +56,7 @@ export default function EngineeringDecisions() {
         meta="ONE PER PROJECT"
       />
 
-      <div className="mt-10 grid gap-6 lg:grid-cols-2">
+      <div className="mt-10 hidden gap-6 lg:grid lg:grid-cols-2">
         {DECISIONS.map((d) => (
           <article
             key={d.ref}
@@ -61,17 +75,37 @@ export default function EngineeringDecisions() {
             <p className="mt-3 font-sans text-base leading-relaxed text-text-secondary">
               {d.detail}
             </p>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {d.tags.map((t) => (
-                <span
-                  key={t}
-                  className="border border-grid-line px-2.5 py-1 font-mono text-xs tracking-wider text-text-secondary"
-                >
-                  {t}
-                </span>
-              ))}
+            <div className="mt-5">
+              <TagList tags={d.tags} />
             </div>
           </article>
+        ))}
+      </div>
+
+      <div className="flex flex-col gap-3 lg:hidden">
+        {DECISIONS.map((d) => (
+          <Accordion
+            key={d.ref}
+            title={
+              <span className="flex flex-col gap-1">
+                <span className="text-text-secondary uppercase">
+                  {d.ref} · {d.project}
+                </span>
+                <span className="font-display text-lg font-bold tracking-normal text-text-primary">
+                  {d.decision}
+                </span>
+              </span>
+            }
+          >
+            <div className="border-t border-grid-line pt-3">
+              <p className="font-sans text-sm leading-relaxed text-text-secondary">
+                {d.detail}
+              </p>
+              <div className="mt-4">
+                <TagList tags={d.tags} />
+              </div>
+            </div>
+          </Accordion>
         ))}
       </div>
     </section>

@@ -1,7 +1,7 @@
 import { useId, useState, type ReactNode } from 'react'
 
 interface AccordionProps {
-  title: string
+  title: ReactNode
   children: ReactNode
 }
 
@@ -19,7 +19,7 @@ const Accordion = ({ title, children }: AccordionProps) => {
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((value) => !value)}
-        className="flex min-h-11 w-full items-center justify-between gap-4 px-4 text-start font-mono text-[11px] tracking-[0.2em] text-text-primary"
+        className="flex min-h-11 w-full items-center justify-between gap-4 px-4 py-2 text-start font-mono text-[11px] tracking-[0.2em] text-text-primary"
       >
         <span>{title}</span>
         <span aria-hidden="true" className="text-base text-blue-sky">
