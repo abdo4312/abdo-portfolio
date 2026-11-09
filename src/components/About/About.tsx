@@ -32,14 +32,16 @@ const About = () => {
     <section
       id="about"
       ref={ref}
-      className="relative px-8 lg:px-16 py-28 lg:py-36"
+      className="relative px-8 lg:px-16 py-28 lg:py-36 max-lg:px-4 max-lg:py-16"
     >
-      <div className="absolute left-6 lg:left-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none" />
-      <div className="absolute right-6 lg:right-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none" />
+      <div className="absolute left-6 lg:left-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none max-lg:hidden" />
+      <div className="absolute right-6 lg:right-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none max-lg:hidden" />
 
       <div
-        className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${
-          visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+        className={`max-w-6xl mx-auto transition-all duration-700 ease-out max-lg:duration-500 ${
+          visible
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-6 max-lg:translate-y-3'
         }`}
       >
         <SectionHeader
@@ -49,13 +51,12 @@ const About = () => {
         />
 
         <div className="grid lg:grid-cols-[1fr_1.6fr] gap-8 lg:gap-10 items-start">
-          {/* Personnel card */}
           <div className="relative border border-grid-line bg-bg-secondary/30 p-5 lg:p-6">
             <CornerMarks />
-            <p className="font-mono text-[11px] tracking-[0.3em] text-text-muted mb-4">
+            <p className="font-mono text-[11px] tracking-[0.3em] text-text-muted max-lg:text-text-secondary mb-4">
               PROFILE_CARD
             </p>
-            <div className="relative aspect-[4/5] w-full border border-grid-line bg-bg-primary/50 flex items-center justify-center mb-6">
+            <div className="relative aspect-[4/5] w-full border border-grid-line bg-bg-primary/50 flex items-center justify-center mb-6 max-lg:hidden">
               <span className="font-mono text-xs tracking-widest text-text-muted text-center">
                 PHOTO
                 <br />
@@ -71,7 +72,7 @@ const About = () => {
                   key={r.label}
                   className="flex items-baseline justify-between gap-4 border-b border-grid-line pb-2"
                 >
-                  <dt className="font-mono text-[11px] tracking-widest text-text-muted">
+                  <dt className="font-mono text-[11px] tracking-widest text-text-muted max-lg:text-text-secondary">
                     {r.label}
                   </dt>
                   <dd className="font-mono text-xs text-text-primary text-right">
@@ -82,29 +83,26 @@ const About = () => {
             </dl>
           </div>
 
-          {/* Right column */}
           <div className="space-y-6">
-            <ReactiveFrame className="border border-grid-line bg-bg-secondary/30 p-6 lg:p-8 h-fit">
+            <ReactiveFrame className="border border-grid-line bg-bg-secondary/30 p-6 lg:p-8 h-fit max-lg:p-4">
               <CornerMarks />
-              <p className="font-mono text-[11px] tracking-[0.3em] text-text-muted mb-6 border-b border-grid-line pb-4">
+              <p className="font-mono text-[11px] tracking-[0.3em] text-text-muted max-lg:text-text-secondary mb-6 border-b border-grid-line pb-4">
                 HOW I LEARNED
               </p>
-              <p className="font-sans text-lg lg:text-xl text-text-primary leading-relaxed mb-6">
+              <p className="font-sans text-lg lg:text-xl max-lg:text-base text-text-primary leading-relaxed mb-6">
                 I didn&apos;t learn React from a course — I learned it by
                 building software real people actually use: a desktop app
-                running in a real bookstore, an Android app with native
-                prayer-time scheduling, and an inheritance calculator that
-                distributes assets using exact arithmetic instead of
-                floating-point approximations.
+                running in a real bookstore, and an Android app with native
+                prayer-time scheduling.
               </p>
-              <p className="font-sans text-base lg:text-lg text-text-secondary leading-relaxed mb-8">
+              <p className="font-sans text-base lg:text-lg max-lg:text-sm text-text-secondary leading-relaxed mb-8 max-lg:mb-6">
                 Everything here is self-taught. No certificates, no bootcamp —
                 just real projects, debugged until they worked correctly, not
                 just until they looked like they did.
               </p>
               <div className="flex flex-wrap items-center justify-between gap-4 border border-grid-line bg-bg-primary/40 p-4">
                 <div>
-                  <p className="font-mono text-[11px] tracking-widest text-text-muted mb-1">
+                  <p className="font-mono text-[11px] tracking-widest text-text-muted max-lg:text-text-secondary mb-1">
                     IN PRODUCTION
                   </p>
                   <p className="font-mono text-sm text-text-primary">
@@ -114,35 +112,24 @@ const About = () => {
                     100 CUSTOMERS · SEASONAL USE
                   </p>
                 </div>
-                <span className="px-3 py-1 border border-blue-sky/60 font-mono text-[11px] tracking-[0.2em] text-blue-sky">
+                <span className="px-3 py-1 border border-blue-sky/60 font-mono text-[11px] tracking-[0.2em] text-blue-sky max-lg:hidden">
                   IN PRODUCTION
                 </span>
               </div>
             </ReactiveFrame>
 
-            <div className="grid sm:grid-cols-2 gap-6">
-              <div className="border border-grid-line bg-bg-secondary/30 p-5">
-                <p className="font-mono text-[11px] tracking-[0.2em] text-blue-sky mb-2">
-                  01 {'//'} EXACT ARITHMETIC
-                </p>
-                <p className="font-mono text-sm text-text-primary mb-1">MIZAN</p>
-                <p className="font-sans text-sm text-text-secondary leading-relaxed">
-                  BigInt exact arithmetic instead of floating-point approximations.
-                </p>
-              </div>
-              <div className="border border-grid-line bg-bg-secondary/30 p-5">
-                <p className="font-mono text-[11px] tracking-[0.2em] text-blue-sky mb-2">
-                  02 {'//'} NATIVE ANDROID
-                </p>
-                <p className="font-mono text-sm text-text-primary mb-1">ROAD TO ISLAM</p>
-                <p className="font-sans text-sm text-text-secondary leading-relaxed">
-                  Native prayer-time scheduling, actively maintained.
-                </p>
-              </div>
+            <div className="border border-grid-line bg-bg-secondary/30 p-5">
+              <p className="font-mono text-[11px] tracking-[0.2em] text-blue-sky mb-2">
+                01 {'//'} NATIVE ANDROID
+              </p>
+              <p className="font-mono text-sm text-text-primary mb-1">ROAD TO ISLAM</p>
+              <p className="font-sans text-sm text-text-secondary leading-relaxed">
+                Native prayer-time scheduling, actively maintained.
+              </p>
             </div>
 
             <div>
-              <p className="font-mono text-[11px] tracking-[0.3em] text-text-muted mb-4">
+              <p className="font-mono text-[11px] tracking-[0.3em] text-text-muted max-lg:text-text-secondary mb-4">
                 USED IN PROJECTS
               </p>
               <ul className="flex flex-wrap gap-2">
