@@ -3,7 +3,9 @@ import { Link, useParams } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import BlueprintBackground from '../components/Background/BlueprintBackground'
 import CornerMarks from '../components/shared/CornerMarks'
+import Accordion from '../components/shared/Accordion'
 import { useInView } from '../hooks/useInView'
+import { useMediaQuery } from '../hooks/useMediaQuery'
 import CaseStudyGallery from '../components/CaseStudy/CaseStudyGallery'
 import CaseStudySpine from '../components/CaseStudy/CaseStudySpine'
 import { getCaseStudyBySlug } from '../data/caseStudies'
@@ -26,17 +28,21 @@ const CaseStudySection = ({
 }: CaseStudySectionProps) => {
   const { ref, visible } = useInView<HTMLElement>(0, '0px 0px -20% 0px')
   return (
-    <section id={id} ref={ref} className="relative z-10 px-8 lg:px-16 py-20 lg:py-28">
-      <div className="absolute left-6 lg:left-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none" />
-      <div className="absolute right-6 lg:right-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none" />
+    <section id={id} ref={ref} className="relative z-10 px-4 py-14 lg:px-16 lg:py-28">
+      <div className="max-lg:hidden absolute left-6 lg:left-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none" />
+      <div className="max-lg:hidden absolute right-6 lg:right-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none" />
       <div
-        className={`mx-auto transition-all duration-700 ease-out ${
+        className={`mx-auto transition-all duration-700 ease-out max-lg:max-w-xl max-lg:duration-500 ${
           wide ? 'max-w-5xl' : 'max-w-4xl'
-        } ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+        } ${
+          visible
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-6 max-lg:translate-y-3'
+        }`}
       >
         <h2
           data-spine-heading={id}
-          className="inline-block font-mono text-xs lg:text-sm tracking-[0.3em] text-blue-sky mb-10"
+          className="inline-block font-mono text-xs lg:text-sm tracking-[0.3em] text-blue-sky mb-8 lg:mb-10"
         >
           {'//'} {index} — {name}
         </h2>
@@ -48,6 +54,7 @@ const CaseStudySection = ({
 
 const CaseStudyPage = () => {
   const { slug } = useParams<{ slug: string }>()
+  const desktop = useMediaQuery('(min-width: 1024px)')
   const cs = getCaseStudyBySlug(slug)
 
   useEffect(() => {
@@ -90,24 +97,24 @@ const CaseStudyPage = () => {
       <Navbar />
       <main className="relative z-10">
         <CaseStudySpine stations={cs.stations}>
-          <header className="relative z-10 px-8 lg:px-16 pt-32 lg:pt-40 pb-16 lg:pb-24">
-            <div className="absolute left-6 lg:left-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none" />
-            <div className="absolute right-6 lg:right-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none" />
-            <div className="max-w-5xl mx-auto">
+          <header className="relative z-10 px-4 pt-24 pb-12 lg:px-16 lg:pt-40 lg:pb-24">
+            <div className="max-lg:hidden absolute left-6 lg:left-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none" />
+            <div className="max-lg:hidden absolute right-6 lg:right-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none" />
+            <div className="max-w-5xl mx-auto max-lg:max-w-xl">
               <Link
                 to="/#work"
-                className="font-mono text-[11px] tracking-[0.2em] text-text-muted hover:text-blue-sky transition-colors duration-200"
+                className="font-mono text-[11px] tracking-[0.2em] text-text-secondary lg:text-text-muted hover:text-blue-sky transition-colors duration-200 max-lg:inline-flex max-lg:min-h-11 max-lg:items-center"
               >
                 ← BACK TO WORK
               </Link>
-              <p className="mt-14 lg:mt-20 font-mono text-xs lg:text-sm tracking-[0.3em] text-blue-sky">
+              <p className="mt-8 lg:mt-20 font-mono text-xs lg:text-sm tracking-[0.3em] text-blue-sky">
                 {'//'} CASE STUDY — {cs.slot}
               </p>
-              <h1 className="mt-6 font-display font-bold uppercase text-5xl md:text-7xl leading-[0.95] text-text-primary">
+              <h1 className="mt-6 font-display font-bold uppercase text-[2.5rem] sm:text-5xl md:text-7xl leading-[0.95] text-text-primary">
                 {titleHead && <>{titleHead} </>}
                 <span className="text-blue-sky">{titleTail}</span>
               </h1>
-              <p className="mt-8 max-w-2xl font-sans text-base lg:text-lg text-text-secondary leading-relaxed">
+              <p className="mt-6 lg:mt-8 max-w-2xl font-sans text-base lg:text-lg text-text-secondary leading-relaxed">
                 {cs.summary}
               </p>
               <dl className="cs-meta" data-spine-meta>
@@ -122,11 +129,11 @@ const CaseStudyPage = () => {
           </header>
 
           <CaseStudySection id="overview" index="01" name="OVERVIEW">
-            <div className="space-y-6" data-spine-obstacle="overview">
+            <div className="space-y-5 lg:space-y-6" data-spine-obstacle="overview">
               {cs.overview.map((paragraph, paragraphIndex) => (
                 <p
                   key={paragraph}
-                  className={`font-sans text-base lg:text-lg leading-relaxed ${
+                  className={`font-sans text-[15px] lg:text-lg leading-relaxed ${
                     paragraphIndex === 0 ? 'text-text-primary' : 'text-text-secondary'
                   }`}
                 >
@@ -161,20 +168,43 @@ const CaseStudyPage = () => {
           </CaseStudySection>
 
           <CaseStudySection id="features" index="03" name="KEY FEATURES">
-            <ol className="cs-features" data-spine-obstacle="features">
-              {cs.features.map((feature, featureIndex) => (
-                <li key={feature.label} className="cs-feature">
-                  <span className="cs-feature-num">
-                    {String(featureIndex + 1).padStart(2, '0')}
-                  </span>
-                  <div>
-                    <h3 className="cs-feature-label">{feature.label}</h3>
+            {desktop ? (
+              <ol className="cs-features" data-spine-obstacle="features">
+                {cs.features.map((feature, featureIndex) => (
+                  <li key={feature.label} className="cs-feature">
+                    <span className="cs-feature-num">
+                      {String(featureIndex + 1).padStart(2, '0')}
+                    </span>
+                    <div>
+                      <h3 className="cs-feature-label">{feature.label}</h3>
+                      <p className="cs-feature-text">{feature.text}</p>
+                      <p className="cs-evidence">{feature.evidence}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <div className="space-y-3">
+                {cs.features.map((feature, featureIndex) => (
+                  <Accordion
+                    key={feature.label}
+                    title={
+                      <span className="flex items-baseline gap-3">
+                        <span className="text-blue-sky">
+                          {String(featureIndex + 1).padStart(2, '0')}
+                        </span>
+                        <span className="uppercase text-text-primary">
+                          {feature.label}
+                        </span>
+                      </span>
+                    }
+                  >
                     <p className="cs-feature-text">{feature.text}</p>
                     <p className="cs-evidence">{feature.evidence}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
+                  </Accordion>
+                ))}
+              </div>
+            )}
           </CaseStudySection>
 
           <CaseStudySection id="gallery" index="04" name="GALLERY" wide>

@@ -129,3 +129,29 @@
   line-height: 1.7;
   color: var(--color-text-secondary);
 }
+
+@media (max-width: 1023.98px) {
+  .gallery-station-slot,
+  .gallery-station-difficulty {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+  }
+
+  .gallery-station-difficulty.is-high {
+    color: var(--color-blue-sky);
+  }
+
+  .gallery-station-difficulty.is-critical {
+    color: var(--color-accent-red);
+  }
+
+  .gallery-insight {
+    margin-top: 20px;
+    padding: 16px;
+  }
+
+  .gallery-insight-label {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+  }
+}

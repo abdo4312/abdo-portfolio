@@ -2,6 +2,7 @@ import { useEffect, useRef, type ReactNode } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import type { CaseStudyStation } from '../../data/caseStudies'
+import { useMediaQuery } from '../../hooks/useMediaQuery'
 import './gallery-spine.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -77,10 +78,11 @@ const CaseStudySpine = ({ stations, children }: CaseStudySpineProps) => {
   const rootRef = useRef<HTMLDivElement>(null)
   const tipPrimaryRef = useRef<SVGGElement>(null)
   const tipSecondaryRef = useRef<SVGGElement>(null)
+  const desktop = useMediaQuery('(min-width: 1024px)')
 
   useEffect(() => {
     const root = rootRef.current
-    if (!root) return
+    if (!root || !desktop) return
 
     const timeouts = new Set<number>()
     const later = (fn: () => void, ms: number) => {
@@ -663,7 +665,7 @@ const CaseStudySpine = ({ stations, children }: CaseStudySpineProps) => {
       timeouts.clear()
       ctx?.revert()
     }
-  }, [stations])
+  }, [stations, desktop])
 
   const nodeDefs: NodeDef[] = [
     { id: 'meta:junction', isJunction: true },
@@ -679,7 +681,7 @@ const CaseStudySpine = ({ stations, children }: CaseStudySpineProps) => {
 
   return (
     <div ref={rootRef} className="cs-spine-zone gallery-spine">
-      <svg className="gallery-spine-svg" aria-hidden="true">
+      <svg className="gallery-spine-svg max-lg:hidden" aria-hidden="true">
         <defs>
           {/* Pure #ff0033 Red Channel Matrix for image static slices */}
           <filter id="cs-channel-red" colorInterpolationFilters="sRGB">

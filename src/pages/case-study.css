@@ -352,3 +352,125 @@
   border: 1px solid var(--color-grid-line);
   padding: 6px 12px;
 }
+
+@media (max-width: 1023.98px) {
+  .cs-meta {
+    margin-top: 32px;
+  }
+
+  .cs-meta-item {
+    padding: 12px 14px;
+  }
+
+  .cs-meta-item dt {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+  }
+
+  .cs-meta-item dd {
+    overflow-wrap: anywhere;
+  }
+
+  .cs-spec {
+    padding: 20px 16px;
+  }
+
+  .cs-spec-grid {
+    gap: 20px;
+  }
+
+  .cs-spec dt,
+  .cs-spec-stack-label {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+  }
+
+  .cs-spec-stack {
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+
+  .cs-spec-stack li {
+    overflow-wrap: anywhere;
+  }
+
+  .cs-evidence {
+    color: var(--color-text-secondary);
+    overflow-wrap: anywhere;
+  }
+
+  .cs-piece {
+    padding: 20px 16px;
+  }
+
+  .cs-piece-index {
+    font-size: 11px;
+  }
+
+  .cs-modes-title {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+  }
+
+  .cs-modes-table {
+    border: none;
+  }
+
+  .cs-modes-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .cs-modes-table,
+  .cs-modes-table tbody,
+  .cs-modes-table tr,
+  .cs-modes-table td {
+    display: block;
+  }
+
+  .cs-modes-table tr {
+    margin-bottom: 8px;
+    padding: 14px 16px;
+    border: 1px solid var(--color-grid-line);
+    background: color-mix(in srgb, var(--color-bg-secondary) 30%, transparent);
+  }
+
+  .cs-modes-table tr:last-child {
+    margin-bottom: 0;
+  }
+
+  .cs-modes-table td {
+    padding: 0;
+    border-bottom: none;
+    font-size: 13px;
+  }
+
+  .cs-modes-table td:first-child {
+    margin-bottom: 4px;
+    font-size: 11px;
+    white-space: normal;
+  }
+
+  .cs-result {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .cs-next {
+    padding: 28px 16px;
+  }
+
+  .cs-next-title {
+    font-size: 28px;
+  }
+
+  .cs-next-label,
+  .cs-next-note {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+  }
+}

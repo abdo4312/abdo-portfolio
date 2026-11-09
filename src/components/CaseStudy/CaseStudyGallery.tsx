@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import GalleryStation from './GalleryStation'
+import GalleryCarousel from './GalleryCarousel'
 import ImageLightbox from '../shared/ImageLightbox'
+import { useMediaQuery } from '../../hooks/useMediaQuery'
 import type { CaseStudyStation } from '../../data/caseStudies'
 import type { GalleryImage } from '../../data/projects'
 
@@ -10,15 +12,24 @@ interface CaseStudyGalleryProps {
 
 const CaseStudyGallery = ({ stations }: CaseStudyGalleryProps) => {
   const [enlarged, setEnlarged] = useState<GalleryImage | null>(null)
+  const desktop = useMediaQuery('(min-width: 1024px)')
 
   return (
     <>
-      <div className="gallery-spine-list">
-        {stations.map((station) => (
-          <GalleryStation key={station.id} station={station} onEnlarge={setEnlarged} />
-        ))}
-      </div>
-      <div data-spine-end className="gallery-spine-end" aria-hidden="true" />
+      {desktop ? (
+        <div className="gallery-spine-list">
+          {stations.map((station) => (
+            <GalleryStation
+              key={station.id}
+              station={station}
+              onEnlarge={setEnlarged}
+            />
+          ))}
+          <div data-spine-end className="gallery-spine-end" aria-hidden="true" />
+        </div>
+      ) : (
+        <GalleryCarousel stations={stations} onEnlarge={setEnlarged} />
+      )}
 
       {enlarged && (
         <ImageLightbox
