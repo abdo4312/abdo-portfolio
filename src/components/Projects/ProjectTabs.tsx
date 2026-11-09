@@ -18,22 +18,24 @@ const ProjectTabs = () => {
     <section
       id="work"
       ref={ref}
-      className="relative px-8 lg:px-16 py-28 lg:py-36"
+      className="relative px-4 py-16 lg:px-16 lg:py-36"
     >
-      <div className="absolute left-6 lg:left-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none" />
-      <div className="absolute right-6 lg:right-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none" />
+      <div className="absolute left-6 lg:left-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none max-lg:hidden" />
+      <div className="absolute right-6 lg:right-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-grid-line to-transparent pointer-events-none max-lg:hidden" />
 
       <div
-        className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${
-          visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+        className={`max-w-6xl mx-auto transition-all duration-700 ease-out max-lg:duration-500 ${
+          visible
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-6 max-lg:translate-y-3'
         }`}
       >
         <SectionHeader
           eyebrow="03 — FEATURED WORK"
-          title="SELECTED WORK"
+          title="Selected work"
           meta={`${String(projects.length).padStart(2, '0')} PROJECTS`}
         />
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-4 max-lg:mx-auto max-lg:max-w-xl lg:grid-cols-3 lg:gap-6">
           {projects.map((project, i) => (
             <ProjectCard
               key={project.id}
