@@ -3,7 +3,9 @@ import type { HTMLAttributes, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import BlueprintBackground from '../components/Background/BlueprintBackground'
+import ImageLightbox from '../components/shared/ImageLightbox'
 import { useInView } from '../hooks/useInView'
+import { useMediaQuery } from '../hooks/useMediaQuery'
 import homeImage from '../assets/images/projects/aroma-case-study/01-aroma-home.png'
 import beansImage from '../assets/images/projects/aroma-case-study/02-aroma-beans.png'
 import boxBuilderImage from '../assets/images/projects/aroma-case-study/03-aroma-box-builder.png'
@@ -11,12 +13,19 @@ import cartImage from '../assets/images/projects/aroma-case-study/04-aroma-cart-
 import deliveryPreviewImage from '../assets/images/projects/aroma-case-study/05-aroma-delivery-preview.png'
 import './aroma-case-study.css'
 
+interface EnlargedImage {
+  src: string
+  alt: string
+  caption: string
+}
+
 interface CaseStudyImageProps {
   src: string
   alt: string
   caption: string
   note?: string
   priority?: boolean
+  onEnlarge?: (image: EnlargedImage) => void
 }
 
 function CaseStudyImage({
@@ -25,19 +34,36 @@ function CaseStudyImage({
   caption,
   note,
   priority = false,
+  onEnlarge,
 }: CaseStudyImageProps) {
+  const image = (
+    <img
+      src={src}
+      alt={alt}
+      width={1440}
+      height={900}
+      loading={priority ? 'eager' : 'lazy'}
+      decoding="async"
+    />
+  )
+
   return (
     <figure className="aroma-cs__figure">
-      <div className="aroma-cs__image-frame">
-        <img
-          src={src}
-          alt={alt}
-          width={1440}
-          height={900}
-          loading={priority ? 'eager' : 'lazy'}
-          decoding="async"
-        />
-      </div>
+      {onEnlarge ? (
+        <button
+          type="button"
+          className="aroma-cs__image-frame aroma-cs__image-button"
+          aria-label={`Enlarge image: ${alt}`}
+          onClick={() => onEnlarge({ src, alt, caption })}
+        >
+          {image}
+          <span className="aroma-cs__zoom-icon" aria-hidden="true">
+            ⤢
+          </span>
+        </button>
+      ) : (
+        <div className="aroma-cs__image-frame">{image}</div>
+      )}
 
       <figcaption className="aroma-cs__caption">
         <span>{caption}</span>
@@ -257,6 +283,10 @@ function ShoppingFlowDiagram() {
 }
 
 function AromaCaseStudyPage() {
+  const desktop = useMediaQuery('(min-width: 1024px)')
+  const [enlarged, setEnlarged] = useState<EnlargedImage | null>(null)
+  const enlarge = desktop ? undefined : setEnlarged
+
   return (
     <>
       <BlueprintBackground />
@@ -312,6 +342,7 @@ function AromaCaseStudyPage() {
               caption="Homepage — the storefront and its shopping entry points."
               note="Visible ratings and promotional figures are mock storefront content."
               priority
+              onEnlarge={enlarge}
             />
           </section>
 
@@ -351,6 +382,7 @@ function AromaCaseStudyPage() {
                 alt="Aroma Corner bean shop showing product cards and filtering controls"
                 caption="Bean shop — products and filters."
                 note="Ratings and promotional figures in the storefront are mock content."
+                onEnlarge={enlarge}
               />
 
               <div className="aroma-cs__copy">
@@ -456,6 +488,7 @@ function AromaCaseStudyPage() {
                 alt="Aroma Corner Box Builder with an Explorer Box filled with six items"
                 caption="Box Builder — an Explorer Box configured with six items."
                 note="Displayed prices and discounts are mock values."
+                onEnlarge={enlarge}
               />
             </div>
           </RevealSection>
@@ -477,6 +510,7 @@ function AromaCaseStudyPage() {
                   src={cartImage}
                   alt="Aroma Corner cart with one box and its contents expanded"
                   caption="Cart — one box with its contents open for review."
+                  onEnlarge={enlarge}
                 />
 
                 <h3>Cart / Review &amp; adjust</h3>
@@ -492,6 +526,7 @@ function AromaCaseStudyPage() {
                   alt="Aroma Corner delivery preview form with no personal information entered"
                   caption="Delivery Preview — an empty demo form."
                   note="No order is submitted and no payment is processed."
+                  onEnlarge={enlarge}
                 />
 
                 <h3>Delivery Preview / Demo only</h3>
@@ -568,6 +603,12 @@ function AromaCaseStudyPage() {
           </RevealSection>
 
           <footer className="aroma-cs__footer">
+            {!desktop && (
+              <Link to="/work/road-to-islam">
+                <span aria-hidden="true">←</span> Previous: Road to Islam
+              </Link>
+            )}
+
             <Link to="/#work">
               <span aria-hidden="true">←</span> Back to featured work
             </Link>
@@ -578,6 +619,16 @@ function AromaCaseStudyPage() {
           </footer>
         </div>
       </main>
+
+      {enlarged && (
+        <ImageLightbox
+          src={enlarged.src}
+          alt={enlarged.alt}
+          caption={enlarged.caption}
+          open
+          onClose={() => setEnlarged(null)}
+        />
+      )}
     </>
   )
 }
