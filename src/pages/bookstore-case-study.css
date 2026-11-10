@@ -115,3 +115,9 @@
     animation: none !important;
   }
 }
+
+@media (width < 1024px) {
+  .bk-flow-link {
+    display: none;
+  }
+}
