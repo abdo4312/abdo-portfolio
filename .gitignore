@@ -27,3 +27,6 @@ dist-ssr
 *.sw?
 
 reports/
+
+# local automation, not part of the portfolio
+n8n-code-review-workflow.json

@@ -16,6 +16,12 @@
     "typecheck": "tsc -b",
     "dev:all": "concurrently -k -n vite,review \"vite\" \"REVIEW_URL=http://localhost:5678/webhook/code-review node tools/code-review-watch.js\""
   },
+  "knip": {
+    "$schema": "https://unpkg.com/knip@5/schema.json",
+    "entry": ["src/main.tsx"],
+    "project": ["src/**/*.{ts,tsx,css}"],
+    "ignore": ["src/assets/**"]
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "gsap": "^3.15.0",
