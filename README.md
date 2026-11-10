@@ -7,7 +7,7 @@ Live site: **https://abdo-portfolio-three.vercel.app**
 ## What is inside
 
 - A home page with seven sections: hero, about, selected work, process, engineering decisions, tech specs, and contact.
-- Three case studies, each with its own layout, gallery, and written reasoning.
+- Three case studies with written reasoning. Road to Islam is rendered from data and has a screenshot gallery. Bookstore and Aroma have their own pages.
 - A full mobile layout under 1024px with a bottom tab bar and a single column flow.
 - A blueprint design system: grid background, squared corners, mono labels, and one accent color.
 
@@ -39,8 +39,11 @@ The visual language is a drafting sheet, not a marketing page.
 | --- | --- |
 | Background | `#0B0E14` |
 | Surface | `#11161F` |
+| Elevated surface | `#161C28` |
+| Deep blue | `#1B3A5C` |
 | Primary | `#4FA8E0` |
 | Glow | `#7EC4F0` |
+| Measure line | `#4FA8E0` |
 | Grid line | `#1E2A3A` |
 | Text | `#E8EDF2` |
 | Secondary text | `#8694A3` |
@@ -59,7 +62,7 @@ src/
   pages/          HomePage and the case study pages, each with its own CSS
   data/           projects.ts and caseStudies.ts, the single source of content
   hooks/          useActiveSection, useInView, useMediaQuery, useGlitchPulse
-  styles/         glitch, neon trace, and shared animation keyframes
+  styles/         glitch effects and shared animation keyframes
   assets/         project screenshots
 ```
 
@@ -70,7 +73,7 @@ src/
 | `/` | Home |
 | `/work/bookstore` | Bookstore Order Manager |
 | `/work/aroma` | Aroma Corner |
-| `/work/:slug` | Remaining case studies, driven by `src/data` |
+| `/work/:slug` | Data driven case studies (currently Road to Islam) |
 
 `vercel.json` rewrites every path to `index.html` so deep links resolve on refresh.
 
@@ -90,4 +93,9 @@ The repository is connected to Vercel. Every push to `main` builds and deploys t
 
 ## Editing content
 
-Projects are objects in `src/data/projects.ts`. Each one carries its sheet code, title, viewport, role, stack, key points, metric, and gallery. Case study text lives in `src/data/caseStudies.ts`. Adding a project means adding an object, not touching layout code.
+Projects are objects in `src/data/projects.ts`. Each one carries its sheet code, title, viewport, role, stack, key points, metric, and gallery.
+
+Case studies come in two shapes:
+
+- Data driven: Road to Islam lives in `src/data/caseStudies.ts` and renders through `/work/:slug`. Adding another one means adding an object there.
+- Bespoke: Bookstore and Aroma have their own pages (`BookstoreCaseStudyPage`, `AromaCaseStudyPage`) with hand written layout. Changing them means editing the page. Adding one means a page, a route in `App.tsx`, and a card in the home project list.

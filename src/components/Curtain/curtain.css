@@ -1,9 +1,0 @@
-@keyframes arc-rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-/* هذا الملف فارغ الآن - arc-rotate انتقل إلى src/styles/shared-animations.css */

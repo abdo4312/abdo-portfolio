@@ -74,7 +74,7 @@ export interface CaseStudyContent {
   }
 }
 
-export const caseStudies: CaseStudyContent[] = [
+const caseStudies: CaseStudyContent[] = [
   {
     slug: 'road-to-islam',
     slot: 'A-02',
