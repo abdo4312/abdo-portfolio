@@ -22,11 +22,17 @@ const difficultyClass = (difficulty: StationDifficulty): string => {
   return ''
 }
 
+const difficultyTone = (difficulty: StationDifficulty): string => {
+  if (difficulty === 'complex') return 'border-accent-red/40 bg-accent-red/10 text-accent-red'
+  if (difficulty === 'medium') return 'border-blue-sky/40 bg-blue-sky/10 text-blue-sky'
+  return 'border-grid-line text-text-secondary'
+}
+
 const GalleryStation = ({ station, onEnlarge, compact = false }: GalleryStationProps) => {
   const { ref, visible } = useInView<HTMLElement>(0, '0px 0px -15% 0px')
+  const single = station.images.length === 1
 
   if (compact) {
-    const single = station.images.length === 1
     return (
       <article ref={ref} className="flex flex-col items-center">
         <header className="flex flex-wrap items-baseline justify-center gap-x-3 gap-y-1 text-center">
@@ -72,55 +78,50 @@ const GalleryStation = ({ station, onEnlarge, compact = false }: GalleryStationP
   }
 
   return (
-    <article ref={ref} className={`gallery-station ${visible ? 'is-visible' : ''}`}>
-      <header className="gallery-station-header" data-station-plate={station.id}>
-        <span className="gallery-station-slot">{station.slot}</span>
-        <h3 className="gallery-station-title">{station.title}</h3>
-        <span className={`gallery-station-difficulty ${difficultyClass(station.difficulty)}`}>
+    <article
+      ref={ref}
+      className="flex h-full flex-col border border-grid-line bg-bg-secondary transition-colors duration-[180ms] ease-in-out hover:border-blue-sky/60"
+    >
+      <header className="flex flex-wrap items-center justify-between gap-3 border-b border-grid-line px-4 py-3 font-mono text-[11px] tracking-[0.16em] uppercase">
+        <span className="flex items-baseline gap-3">
+          <span className="text-blue-sky">{station.slot}</span>
+          <h3 className="text-text-primary">{station.title}</h3>
+        </span>
+        <span className={`border px-2 py-0.5 text-[10px] ${difficultyTone(station.difficulty)}`}>
           {difficultyLabel(station.difficulty)}
         </span>
       </header>
 
-      <div className="gallery-station-frames" data-station-frames={station.id}>
+      <div className={`grid gap-3 p-4 ${single ? 'grid-cols-2' : 'grid-cols-2'}`}>
         {station.images.map((image) => (
-          <button
-            key={image.src}
-            type="button"
-            className="gallery-frame"
-            onClick={() => onEnlarge(image)}
-            aria-label={`Enlarge — ${image.caption}`}
-          >
-            <span className="gallery-frame-glitch-stage">
+          <figure key={image.src} className={single ? 'col-span-2 mx-auto w-[calc(50%-6px)]' : ''}>
+            <button
+              type="button"
+              onClick={() => onEnlarge(image)}
+              aria-label={`Enlarge — ${image.caption}`}
+              className="relative block aspect-[3/5] w-full cursor-zoom-in overflow-hidden border border-grid-line bg-bg-primary/60 transition-colors duration-[180ms] hover:border-blue-sky/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-sky"
+            >
               <img
                 src={image.src}
                 alt={image.caption}
                 loading="lazy"
-                className="gallery-frame-img-base"
+                className="absolute inset-0 h-full w-full object-contain"
               />
-              <img
-                src={image.src}
-                alt=""
+              <span
                 aria-hidden="true"
-                loading="lazy"
-                className="gallery-frame-img-glitch is-red-channel"
-              />
-              <img
-                src={image.src}
-                alt=""
-                aria-hidden="true"
-                loading="lazy"
-                className="gallery-frame-img-glitch is-cyan-channel"
-              />
-              <span className="gallery-frame-static" aria-hidden="true" />
-            </span>
-            <span className="gallery-frame-zoom" aria-hidden="true">
-              ⤢ ENLARGE
-            </span>
-          </button>
+                className="absolute right-2 bottom-2 flex h-8 w-8 items-center justify-center border border-grid-line bg-bg-primary/90 text-base text-blue-sky"
+              >
+                ⤢
+              </span>
+            </button>
+            <figcaption className="mt-2 font-mono text-[11px] leading-relaxed text-text-secondary">
+              {image.caption}
+            </figcaption>
+          </figure>
         ))}
       </div>
 
-      <div className="gallery-station-insight-wrap" data-station-insight={station.id}>
+      <div className="mt-auto px-4 pb-4">
         <GalleryInsightBubble text={station.insight} active={visible} />
       </div>
     </article>

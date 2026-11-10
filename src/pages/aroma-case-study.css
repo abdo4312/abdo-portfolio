@@ -51,6 +51,13 @@
   animation: aroma-cs-rise-in 560ms 100ms ease-out both;
 }
 
+@media (min-width: 1024px) {
+  .aroma-cs__hero > .aroma-cs__figure {
+    position: relative;
+    inset-inline-start: clamp(12px, 2vw, 32px);
+  }
+}
+
 .aroma-cs__hero h1 {
   margin: 1.4rem 0 1.5rem;
   color: var(--ac-text);

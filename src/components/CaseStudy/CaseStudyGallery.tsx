@@ -17,7 +17,7 @@ const CaseStudyGallery = ({ stations }: CaseStudyGalleryProps) => {
   return (
     <>
       {desktop ? (
-        <div className="gallery-spine-list">
+        <div className="grid grid-cols-2 gap-4">
           {stations.map((station) => (
             <GalleryStation
               key={station.id}
@@ -25,7 +25,6 @@ const CaseStudyGallery = ({ stations }: CaseStudyGalleryProps) => {
               onEnlarge={setEnlarged}
             />
           ))}
-          <div data-spine-end className="gallery-spine-end" aria-hidden="true" />
         </div>
       ) : (
         <GalleryCarousel stations={stations} onEnlarge={setEnlarged} />
