@@ -92,7 +92,7 @@ const GalleryStation = ({ station, onEnlarge, compact = false }: GalleryStationP
         </span>
       </header>
 
-      <div className={`grid gap-3 p-4 ${single ? 'grid-cols-2' : 'grid-cols-2'}`}>
+      <div className="grid grid-cols-2 gap-3 p-4">
         {station.images.map((image) => (
           <figure key={image.src} className={single ? 'col-span-2 mx-auto w-[calc(50%-6px)]' : ''}>
             <button

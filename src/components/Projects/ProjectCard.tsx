@@ -64,7 +64,7 @@ const ProjectCard = ({ project, index, total, caseStudyHref }: ProjectCardProps)
           {project.role}
         </p>
 
-        <ul className="mb-5 space-y-2 key-points-list">
+        <ul className="mb-5 space-y-2">
           {project.keyPoints.map((p) => (
             <li key={p.number} className="flex gap-2 font-sans text-sm text-text-secondary">
               <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-blue-sky font-mono text-[9px] text-blue-sky max-lg:h-5 max-lg:w-5 max-lg:text-[11px]">
