@@ -6,7 +6,7 @@ Route-level page components for the portfolio SPA. Includes the home page compos
 ## Interface
 - `HomePage` (default export) — composes site sections (`Hero`, `About`, `ProjectTabs` (Work), `Process`, `TechSpecs`, `EngineeringDecisions`, `Contact`, `Footer`), manages first-entry curtain state via `sessionStorage`, and passes `siteRef`/`onComplete` to `Curtain` and `entered` to `Hero`. [HomePage.tsx:HomePage]
 
-- `CaseStudyPage` (default export) — route `/work/:slug`; looks up content via `getCaseStudyBySlug`, scrolls to top on slug change, renders a not-found state or a full case-study layout with `CaseStudySpine`, `CaseStudyGallery`, and content sections. [CaseStudyPage.tsx:CaseStudyPage]
+- `CaseStudyPage` (default export) — route `/work/:slug`; looks up content via `getCaseStudyBySlug`, scrolls to top on slug change, renders a not-found state or a full case-study layout with `CaseStudyGallery`, and content sections. [CaseStudyPage.tsx:CaseStudyPage]
 - `AromaCaseStudyPage` (default export) — dedicated `/work/aroma` page with custom hero/meta, image figures, and reveal/presentation sections; uses local presentation helpers for figures, reveal sections, and a shopping-flow diagram (not module exports). [AromaCaseStudyPage.tsx:AromaCaseStudyPage]
 - `BookstoreCaseStudyPage` (default export) — dedicated `/work/bookstore` page with blueprint-style sections, figures, metrics/spec tables, diagrams, and internal/footer navigation handling; uses local presentation helpers (not module exports). [BookstoreCaseStudyPage.tsx:BookstoreCaseStudyPage]
 
