@@ -28,20 +28,20 @@ export interface CaseStudyStation {
   insight: string
 }
 
-export interface CaseStudyFeature {
+interface CaseStudyFeature {
   label: string
   text: string
   evidence: string
 }
 
-export interface CaseStudyChallengePiece {
+interface CaseStudyChallengePiece {
   index: string
   title: string
   text: string
   evidence: string
 }
 
-export interface CaseStudyPlaybackMode {
+interface CaseStudyPlaybackMode {
   mode: string
   behavior: string
 }

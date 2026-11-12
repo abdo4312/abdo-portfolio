@@ -12,7 +12,7 @@ import roadToIslamSettingsAccount from '../assets/images/projects/road-to-islam/
 import roadToIslamSettingsPreferences from '../assets/images/projects/road-to-islam/10-settings-preferences.png'
 import roadToIslamLearnProgram from '../assets/images/projects/road-to-islam/11-learn-program.png'
 
-export interface ProjectKeyPoint {
+interface ProjectKeyPoint {
   number: number
   text: string
 }
