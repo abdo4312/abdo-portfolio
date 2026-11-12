@@ -594,9 +594,10 @@ export default function BookstoreCaseStudyPage() {
     void navigate(target)
   }
   const footerLinkClass =
-    'inline-flex min-h-11 items-center transition-colors duration-[180ms] hover:text-blue-sky lg:inline lg:min-h-0'
+    'inline-flex min-h-11 items-center transition-colors duration-[180ms] hover:text-blue-sky'
   const projectNavClass =
     'flex min-h-11 items-center border border-grid-line bg-bg-secondary px-4 font-mono text-sm text-text-primary transition-colors duration-[180ms] hover:border-blue-sky/60'
+  const stripLinkClass = 'transition-colors duration-[180ms] hover:text-blue-sky'
   return (
     <div className="relative min-h-screen text-text-primary">
       <BlueprintBackground />
@@ -1235,26 +1236,18 @@ export default function BookstoreCaseStudyPage() {
           </Link>
         </nav>
       </div>
-      <footer className="relative z-10 border-t border-grid-line bg-bg-secondary/60">
-        <div className="mx-auto grid max-w-xl grid-cols-2 gap-x-6 gap-y-6 px-4 py-8 lg:max-w-7xl lg:grid-cols-[1.6fr_1fr_1fr_1.2fr] lg:gap-8 lg:px-12 lg:py-10">
-          <div className="col-span-2 border-l-2 border-blue-sky pl-4 lg:col-span-1">
-            <p className="font-display text-lg font-bold tracking-wide text-text-primary uppercase">
-              ABDELRHMAN
-              <span className="hidden lg:inline">{' // FRONTEND_ARCHITECT'}</span>
-            </p>
-            <p className="mt-2 font-mono text-[12px] tracking-[0.04em] text-text-secondary lg:text-[11px] lg:tracking-[0.14em] lg:text-text-muted lg:uppercase">
+      <footer className="relative z-10 border-t border-grid-line bg-bg-secondary/60 lg:hidden">
+        <div className="mx-auto grid max-w-xl grid-cols-2 gap-x-6 gap-y-6 px-4 py-8">
+          <div className="col-span-2 border-l-2 border-blue-sky pl-4">
+            <p className="font-display text-lg font-bold tracking-wide text-text-primary uppercase">ABDELRHMAN</p>
+            <p className="mt-2 font-mono text-[12px] tracking-[0.04em] text-text-secondary">
               Frontend engineering · React & TypeScript
             </p>
-            <p className="mt-4 font-mono text-[11px] tracking-[0.14em] text-blue-sky uppercase lg:mt-6">
-              <span className="lg:hidden">CAIRO, EGYPT</span>
-              <span className="hidden lg:inline">LOC: CAIRO, EGYPT</span>
-            </p>
+            <p className="mt-4 font-mono text-[11px] tracking-[0.14em] text-blue-sky uppercase">CAIRO, EGYPT</p>
           </div>
           <div>
-            <p className="mb-3 font-mono text-[11px] tracking-[0.18em] text-text-secondary uppercase lg:text-[10px] lg:text-text-muted">
-              INDEX_REG
-            </p>
-            <ul className="space-y-0 font-mono text-[11px] tracking-[0.12em] text-text-secondary uppercase lg:space-y-2">
+            <p className="mb-3 font-mono text-[11px] tracking-[0.18em] text-text-secondary uppercase">INDEX_REG</p>
+            <ul className="font-mono text-[11px] tracking-[0.12em] text-text-secondary uppercase">
               {FOOTER_INDEX.map((l) => (
                 <li key={l.label}>
                   <a
@@ -1269,10 +1262,8 @@ export default function BookstoreCaseStudyPage() {
             </ul>
           </div>
           <div>
-            <p className="mb-3 font-mono text-[11px] tracking-[0.18em] text-blue-sky uppercase lg:text-[10px]">
-              LINKS
-            </p>
-            <ul className="space-y-0 font-mono text-[11px] tracking-[0.12em] text-text-secondary uppercase lg:space-y-2">
+            <p className="mb-3 font-mono text-[11px] tracking-[0.18em] text-blue-sky uppercase">LINKS</p>
+            <ul className="font-mono text-[11px] tracking-[0.12em] text-text-secondary uppercase">
               {FOOTER_LINKS.map((l) => (
                 <li key={l.label}>
                   <a
@@ -1286,17 +1277,26 @@ export default function BookstoreCaseStudyPage() {
               ))}
             </ul>
           </div>
-          <p className="col-span-2 border-t border-grid-line/60 pt-4 font-mono text-[11px] tracking-[0.12em] text-blue-sky uppercase lg:hidden">
+          <p className="col-span-2 border-t border-grid-line/60 pt-4 font-mono text-[11px] tracking-[0.12em] text-blue-sky uppercase">
             OPEN TO WORK · FULL-TIME · FREELANCE
           </p>
-          <div className="hidden border border-dashed border-blue-sky/60 p-4 lg:block">
-            <p className="font-mono text-[10px] tracking-[0.18em] text-text-muted uppercase">SPECIFICATION STAMP</p>
-            <p className="mt-2 font-display text-lg font-bold text-text-primary uppercase">OPEN TO WORK</p>
-            <p className="mt-3 font-mono text-[10px] tracking-[0.14em] text-blue-sky uppercase">
-              FULL-TIME · FREELANCE
-            </p>
-          </div>
         </div>
+      </footer>
+      <footer className="relative z-10 hidden border-t border-grid-line bg-bg-secondary/60 lg:block">
+        <nav
+          aria-label="Project navigation"
+          className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-12 py-6 font-mono text-[11px] tracking-[0.16em] text-text-secondary uppercase"
+        >
+          <Link to="/work/aroma" className={stripLinkClass}>
+            ← Previous: Aroma Corner
+          </Link>
+          <Link to="/#work" className={stripLinkClass}>
+            ← Back to featured work
+          </Link>
+          <Link to="/work/road-to-islam" className={stripLinkClass}>
+            Next: Road to Islam →
+          </Link>
+        </nav>
       </footer>
     </div>
   )
